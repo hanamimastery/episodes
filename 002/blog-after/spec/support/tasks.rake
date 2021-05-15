@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 begin
-  require "rspec"
-  require "rspec/core/rake_task"
+  require 'rspec'
+  require 'rspec/core/rake_task'
 
-  require_relative "suite"
+  require_relative 'suite'
   suite = Test::Suite.instance
 
-  desc "Run all specs"
+  desc 'Run all specs'
   RSpec::Core::RakeTask.new :spec do |t|
     opts = ["#{suite.root} --pattern **/*_spec.rb"]
 
     if suite.ci?
       # Add custom output/formatting here for CI tool to pick up...
-      opts << "--format progress"
+      opts << '--format progress'
     end
 
-    t.rspec_opts = opts.join(" ")
+    t.rspec_opts = opts.join(' ')
   end
 
   namespace :spec do
@@ -27,7 +27,7 @@ begin
       end
     end
 
-    desc "Verify coverage"
+    desc 'Verify coverage'
     task :verify_coverage do
       if suite.current_coverage.to_i < suite.coverage_threshold
         puts "Coverage too low. Current: #{suite.current_coverage}%; Expected min: #{suite.coverage_threshold}%"

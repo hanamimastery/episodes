@@ -1,7 +1,7 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require "dry/types"
+require 'dry/types'
 
 module Sandbox
   module Types
