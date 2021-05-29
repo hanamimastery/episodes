@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 module Main
-  module Views
+  module Actions
     module Blog
-      class Articles < View::Base
+      module Articles
+        class Index < Main::Action
+        end
       end
     end
   end
