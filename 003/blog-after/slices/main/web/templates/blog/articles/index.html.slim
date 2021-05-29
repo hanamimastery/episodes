@@ -1,5 +1,8 @@
 
-h1 Blog articles
+h1.title Blog articles
 
-- articles.each do |article|
-  == render :item, article: article
+- articles.each_slice(3) do |row|
+  .columns
+    - row.each do |article|
+      .column.is-one-third
+        == render :item, article: article
