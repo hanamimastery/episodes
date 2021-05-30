@@ -16,5 +16,8 @@
     "build": "NODE_ENV=production node ./.assets/scripts/build.js production",
     "build-production": "yarn run build",
     "heroku-postbuild": "yarn run build"
+  },
+  "dependencies": {
+    "bulma": "^0.9.2"
   }
 }
