@@ -1,19 +1,15 @@
+# frozen_string_literal :true
+
 module Onboarding
   class RegistrationsController < ApplicationController
-    before_action :authorize!
-
     def create
-      model = deserialize(params)
-      if (user = User.new(model)).valid?
-        user.save
-        render json: { user: user.attributes }, status: 201
-      else
-        render json: { errors: user.errors }, status: 422
-      end
+      call_action(create_user)
     end
 
-    def deserialize(input)
-      input.require(:user).permit(:email, :name)
+    private
+
+    def create_user
+      Endpoints::CreateUser::Action.new
     end
   end
 end
