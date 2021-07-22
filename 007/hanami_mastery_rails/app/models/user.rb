@@ -1,4 +1,6 @@
 class User < ApplicationRecord
-  validates :email, uniq: true
-  validates :name, :email, presence: true
+  validates :email, uniqueness: true
+  validates :name, :email, presence: { message: 'must be filled' }
+
+  # after_create :send_notification email
 end

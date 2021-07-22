@@ -1,29 +1,20 @@
 class ApplicationController < ActionController::API
-  def call_action(action)
-    action.call(request) do |result|
-      result.success do |status:|
-        head status
-      end
+  AuthorizationError = Class.new(StandardError)
+  rescue_from AuthorizationError, with: :render_forbidden
+  rescue_from ActionController::ParameterMissing, with: :render_bad_request
 
-      result.failure(:deserialize) do |error|
-        head :bad_request
-      end
+  private
 
-      result.failure(:authorize) do |error|
-        head 403
-      end
+  def render_forbidden
+    head :forbidden
+  end
 
-      result.failure(Dry::Validation::Result) do |res|
-        render json: { errors: res.errors.to_h }, status: 422
-      end
+  def render_bad_request
+    head :bad_request
+  end
 
-      result.failure(:teapot) do |message:|
-        render json: { errors: message }, status: 418
-      end
-
-      result.failure do |res|
-        head 500
-      end
-    end
+  def authorize!
+    token = request.headers['Authorization'].to_s.gsub('Bearer ', '')
+    raise AuthorizationError if token.blank?
   end
 end

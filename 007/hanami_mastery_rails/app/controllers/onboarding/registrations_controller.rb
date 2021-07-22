@@ -2,14 +2,28 @@
 
 module Onboarding
   class RegistrationsController < ApplicationController
+    before_action :authorize!
+
     def create
-      call_action(create_user)
+      user = User.new(user_params)
+
+      if user.valid?
+        if User.count > 0
+          message = 'too many subscriptions! Try again later'
+          return render json: { errors: message }, status: 418
+        end
+
+        user.save
+        head :created
+      else
+        render json: { errors: user.errors }, status: :unprocessable_entity
+      end
     end
 
     private
 
-    def create_user
-      Endpoints::CreateUser::Action.new
+    def user_params
+      params.require(:user).permit(:name, :email)
     end
   end
 end
