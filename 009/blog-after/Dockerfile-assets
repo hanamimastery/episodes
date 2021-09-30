@@ -1,0 +1,11 @@
+FROM node:alpine
+
+RUN apk update && apk add build-base git
+
+WORKDIR /app
+
+COPY package.json yarn.lock .assets ./
+
+RUN yarn
+
+COPY . .

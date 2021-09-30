@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title
+      - if content_for :title
+        ==> content_for :title
+        ' /
+      ' Sandbox
+    meta name="title" content="Sandbox"
+    link rel="stylesheet" type="text/css" href=assets["main__public.css"]
+    script src=assets["main__public.js"] defer=true
+
+  body
+   section.section
+    .container
+      == yield
