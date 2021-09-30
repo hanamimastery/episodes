@@ -1,0 +1,15 @@
+
+h1.title Blog articles
+
+nav.breadcrumb aria-label="breadcrumbs"
+  ul
+    li
+      a href="/" Home
+    li.is-active
+      a href='/articles' aria-current='page' articles
+
+- articles.each_slice(3) do |row|
+  .columns
+    - row.each do |article|
+      .column
+        == render :item, article: article

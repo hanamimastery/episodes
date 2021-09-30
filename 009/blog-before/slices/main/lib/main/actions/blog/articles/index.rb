@@ -2,8 +2,10 @@
 
 module Main
   module Actions
-    module Home
-      class Show < Main::Action
+    module Blog
+      module Articles
+        class Index < Main::Action
+        end
       end
     end
   end

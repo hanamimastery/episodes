@@ -1,0 +1,22 @@
+nav.breadcrumb aria-label="breadcrumbs"
+  ul
+    li
+      a href="/" Home
+    li
+      a href='/articles' articles
+    li.is-active
+      a href='/articles/#{article.id}' aria-current='page' = article.id
+
+article.container
+  figure class="image is-16by9"
+    img src=(article.thumbnail) alt="Placeholder image"
+
+  div class="media"
+    div class="media-content"
+      p class="title is-4" = article.title
+      p class="subtitle is-6"
+        == article.by
+        time datetime==article.published_on
+          = article.published_on
+  .content
+    = article.content
