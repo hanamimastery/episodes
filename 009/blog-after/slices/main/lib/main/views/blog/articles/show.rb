@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'faker'
-
 module Main
   module Views
     module Blog
