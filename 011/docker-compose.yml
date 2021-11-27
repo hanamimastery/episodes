@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/app
-      - bundle_path:/usr/local/bundle
+      # - bundle_path:/usr/local/bundle
     command: script/puma
     env_file: ".env"
     ports:
