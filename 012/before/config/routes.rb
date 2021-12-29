@@ -2,7 +2,7 @@
 
 require "hanami/application/routes"
 
-module AppPrototype
+module Sandbox
   class Routes < Hanami::Application::Routes
     define do
       slice :main, at: "/" do

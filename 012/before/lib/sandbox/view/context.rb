@@ -2,7 +2,7 @@
 
 require "hanami/view/context"
 
-module AppPrototype
+module Sandbox
   module View
     class Context < Hanami::View::Context
       include Deps[

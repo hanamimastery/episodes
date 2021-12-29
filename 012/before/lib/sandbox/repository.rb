@@ -3,7 +3,7 @@
 require "rom-repository"
 require_relative "entities"
 
-module AppPrototype
+module Sandbox
   class Repository < ROM::Repository::Root
     include Deps[container: "persistence.rom"]
 
