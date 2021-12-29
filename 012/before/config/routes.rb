@@ -7,6 +7,9 @@ module Sandbox
     define do
       slice :main, at: "/" do
         root to: "home.show"
+
+        get '/articles', to: 'articles.published'
+        get '/articles/drafts', to: 'articles.drafts'
       end
     end
   end
