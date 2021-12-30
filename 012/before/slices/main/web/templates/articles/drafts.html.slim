@@ -1,1 +1,17 @@
 h1 Draft Articles
+
+nav.breadcrumb aria-label="breadcrumbs"
+  ul
+    li
+      a href="/" Home
+    li
+      a href='/articles' aria-current='page' articles
+
+    li.is-active
+      a href='/articles/drafts' aria-current='page' drafts
+
+- articles.each_slice(3) do |row|
+  .columns
+    - row.each do |article|
+      .column
+        == render :item, article: article

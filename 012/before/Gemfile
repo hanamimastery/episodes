@@ -42,6 +42,7 @@ group :development, :test do
   gem "break", "~> 0.21"
   gem "dotenv", "~> 2.7"
   gem "guard-rack", "~> 2.2"
+  gem "faker"
   gem "pry"
   gem "standard"
 end
