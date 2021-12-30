@@ -9,7 +9,8 @@ module Main
         ]
 
         def handle(req, res)
-          res.render view, articles: repo.published
+          res.headers['Content-Type'] = 'application/json'
+          res.body = Serializers::Article.new(repo.published).serialize
         end
       end
     end
