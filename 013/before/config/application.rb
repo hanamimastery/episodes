@@ -16,5 +16,6 @@ module Sandbox
       expire_after: 60 * 60 * 24 * 365 # 1 year
     }
     config.actions.content_security_policy[:default_src] = "http://localhost:8080"
+    config.actions.content_security_policy[:default_src] = "http://localhost:8080 https://loremflickr.com"
   end
 end
