@@ -38,6 +38,7 @@ gem "slim", "~> 4.0"
 
 # Development/test
 group :development, :test do
+  gem "faker"
   gem "pry-byebug"
   gem "break", "~> 0.21"
   gem "dotenv", "~> 2.7"
