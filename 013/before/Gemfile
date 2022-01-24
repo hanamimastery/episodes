@@ -44,6 +44,7 @@ group :development, :test do
   gem "guard-rack", "~> 2.2"
   gem "pry"
   gem "standard"
+  gem "faker"
 end
 
 # Test

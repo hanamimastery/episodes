@@ -342,6 +342,7 @@ DEPENDENCIES
   dry-types (~> 1.0)
   dry-validation (~> 1.4)
   erbse (~> 0.1)
+  faker
   guard-rack (~> 2.2)
   hanami (~> 2.0.alpha)
   hanami-cli (~> 2.0.0.alpha)

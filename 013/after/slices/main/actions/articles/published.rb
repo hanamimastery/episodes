@@ -5,7 +5,7 @@ module Main
     module Articles
       class Published < Main::Action
         include Deps[
-          repo: 'application.persistence.repositories.articles'
+          repo: 'repositories.articles'
         ]
 
         def handle(req, res)

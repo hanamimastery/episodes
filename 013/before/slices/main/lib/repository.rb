@@ -5,6 +5,6 @@ require "sandbox/repository"
 
 module Main
   class Repository < Sandbox::Repository
-    struct_namespace Entities
+    # struct_namespace Entities
   end
 end
