@@ -2,10 +2,10 @@
 #
 class Foo
   # Does something cool
-  # @param [Hash] sample argument
+  # @param name [Hash] sample argument
   # @return [NilClass]
   #
-  def call(arg1)
+  def call(name:)
   end
 end
 
