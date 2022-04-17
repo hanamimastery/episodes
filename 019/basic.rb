@@ -4,25 +4,15 @@ require 'bundler/setup'
 require 'irb'
 require 'dry-schema'
 
-class OtherInfoSchema < Dry::Schema::Params
-  define do
-    required(:tags).value(:array, min_size?: 2).each(:str?)
-  end
+schema = Dry::Schema.define do
+  required(:name).filled(:string)
+  optional(:age).maybe(:integer)
 end
 
-class UserSchema < Dry::Schema::Params
-  define do
-    required(:name).filled(:string)
-    optional(:age).maybe(:integer)
-    required(:other_info).schema(OtherInfoSchema.new)
-  end
-end
-
-schema = UserSchema.new
-result = schema.call(
-  name: 'Seb',
-  age: '19',
-  other_info: { tags: [] }
-)
+input = { name: nil, age: nil }
+schema.call(input).success?
+# => false
+schema.call(input).errors.to_h
+# => {:name=>["must be a string"]}
 
 IRB.start
