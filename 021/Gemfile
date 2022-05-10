@@ -12,6 +12,7 @@ gem "hanami-controller", "~> 2.0.alpha"
 gem "hanami-router", "~> 2.0.0.alpha"
 gem "hanami-utils", "~> 2.0.0.alpha"
 gem "hanami-view", "~> 2.0.0.alpha"
+gem "hanami-validations", git: "https://github.com/hanami/validations", branch: "main"
 
 # HTTP
 gem "puma", "~> 5.6"
@@ -35,9 +36,6 @@ gem "dry-configurable", "~> 0.13"
 gem "erbse", "~> 0.1"
 gem "i18n", "~> 1.8"
 gem "slim", "~> 4.0"
-
-gem "alba", "~> 1.6.0"
-gem "oj"
 
 # Development/test
 group :development, :test do

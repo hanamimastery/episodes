@@ -1,9 +1,16 @@
+GIT
+  remote: https://github.com/hanami/validations
+  revision: eec36c6961be9f07d53880851ac1d7e7eef53ae7
+  branch: main
+  specs:
+    hanami-validations (2.0.0.alpha2)
+      dry-validation (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    alba (1.6.0)
     ast (2.4.2)
     break (0.30.0)
     byebug (11.1.3)
@@ -195,7 +202,6 @@ GEM
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    oj (3.13.11)
     parallel (1.21.0)
     parser (3.1.1.0)
       ast (~> 2.4.1)
@@ -325,7 +331,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  alba (~> 1.6.0)
   break (~> 0.21)
   capybara (~> 3.0)
   capybara-screenshot (~> 1.0)
@@ -347,9 +352,9 @@ DEPENDENCIES
   hanami-controller (~> 2.0.alpha)
   hanami-router (~> 2.0.0.alpha)
   hanami-utils (~> 2.0.0.alpha)
+  hanami-validations!
   hanami-view (~> 2.0.0.alpha)
   i18n (~> 1.8)
-  oj
   pg
   pry
   pry-byebug
