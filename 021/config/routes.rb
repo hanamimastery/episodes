@@ -7,8 +7,8 @@ module Interlinker
     define do
       slice :main, at: "/" do
         root to: "home.show"
-        get '/users/:id', to: 'users.show'
-        get '/users', to: 'users.index'
+        get "/users/:id", to: "users.show"
+        get "/users", to: "users.index"
       end
     end
   end

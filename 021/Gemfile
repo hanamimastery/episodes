@@ -37,6 +37,9 @@ gem "erbse", "~> 0.1"
 gem "i18n", "~> 1.8"
 gem "slim", "~> 4.0"
 
+gem "alba", git: "https://github.com/okuramasafumi/alba", branch: "main"
+gem "oj"
+
 # Development/test
 group :development, :test do
   gem "pry-byebug"
