@@ -1,8 +1,8 @@
 Hanami.application.register_bootable :persistence, namespace: true do |container|
   init do
-    require "rom-changeset"
-    require "rom/core"
-    require "rom/sql"
+    require 'rom-changeset'
+    require 'rom/core'
+    require 'rom/sql'
 
     rom_config = ROM::Configuration.new(:sql, container[:settings].database_url)
 
@@ -12,14 +12,14 @@ Hanami.application.register_bootable :persistence, namespace: true do |container
 
     rom_config.plugin(:sql, relations: :auto_restrictions)
 
-    register "config", rom_config
-    register "db", rom_config.gateways[:default].connection
+    register 'config', rom_config
+    register 'db', rom_config.gateways[:default].connection
   end
 
   start do
-    config = container["persistence.config"]
-    config.auto_registration container.root.join("lib/app_prototype/persistence")
+    config = container['persistence.config']
+    config.auto_registration container.root.join('lib/app_prototype/persistence')
 
-    register "rom", ROM.container(config)
+    register 'rom', ROM.container(config)
   end
 end

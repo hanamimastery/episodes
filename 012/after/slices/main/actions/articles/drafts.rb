@@ -8,7 +8,7 @@ module Main
           repo: 'persistence.repositories.articles',
         ]
 
-        def handle(req, res)
+        def handle(_req, res)
           res.headers['Content-Type'] = 'application/json'
           res.body = Serializers::Article.new(repo.drafts).serialize
         end

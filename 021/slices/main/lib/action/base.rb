@@ -1,7 +1,7 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require "interlinker/action/base"
+require 'interlinker/action/base'
 
 module Main
   module Action
@@ -10,7 +10,7 @@ module Main
 
       private
 
-      def set_headers(req, res)
+      def set_headers(_req, res)
         res.headers['Content-Type'] = 'application/json'
       end
     end

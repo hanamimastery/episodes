@@ -9,7 +9,7 @@ module Main
             repo: 'application.persistence.repositories.articles'
           ]
 
-          def handle(req, res)
+          def handle(_req, res)
             res.render view, articles: repo.all
           end
         end

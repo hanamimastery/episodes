@@ -12,9 +12,7 @@ module Main
       attributes :id, :nickname
 
       attribute :full_name do |resource|
-        if resource.last_name && resource.first_name
-          [resource.first_name, resource.last_name].join(": ")
-        end
+        [resource.first_name, resource.last_name].join(': ') if resource.last_name && resource.first_name
       end
 
       transform_keys :camel

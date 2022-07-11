@@ -16,7 +16,7 @@ module Main
 
         def handle(req, res)
           res.status = 200
-          res.headers.merge!("X-Custom" => "OK")
+          res.headers.merge!('X-Custom' => 'OK')
           res.body = <<-HTML
             <p>#{res.body}</p>
             <h3>Hello, awesome suscriber!</h3>
@@ -32,7 +32,7 @@ module Main
 
         def handle_authorize(*, res, _req)
           res.status = 401
-          res.body = "Unauthorized"
+          res.body = 'Unauthorized'
         end
       end
     end

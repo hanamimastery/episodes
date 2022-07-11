@@ -8,11 +8,11 @@ module Test
       end
 
       def rom
-        Hanami.application["persistence.rom"]
+        Hanami.application['persistence.rom']
       end
 
       def db
-        Hanami.application["persistence.db"]
+        Hanami.application['persistence.db']
       end
     end
 
@@ -31,13 +31,11 @@ module Test
 
       def entity_namespace
         @entity_namespace ||=
-          begin
-            case type
-            when :main
-              Main::Entities
-            else
-              Welcome::Entities
-            end
+          case type
+          when :main
+            Main::Entities
+          else
+            Welcome::Entities
           end
       end
     end

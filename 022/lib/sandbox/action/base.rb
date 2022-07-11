@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "hanami/application/action"
+require 'hanami/application/action'
 
 module Sandbox
   module Action

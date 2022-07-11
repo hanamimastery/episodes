@@ -1,5 +1,5 @@
-require "database_cleaner"
-require_relative "helpers"
+require 'database_cleaner'
+require_relative 'helpers'
 
 DatabaseCleaner[:sequel, connection: Test::DB::Helpers.db].strategy = :transaction
 

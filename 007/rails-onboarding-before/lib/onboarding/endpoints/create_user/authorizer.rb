@@ -8,7 +8,7 @@ module Onboarding
       class Authorizer
         include Dry::Monads[:result]
 
-        def call(model, auth)
+        def call(_model, auth)
           auth.present? ? Success() : Failure(:authorize)
         end
       end

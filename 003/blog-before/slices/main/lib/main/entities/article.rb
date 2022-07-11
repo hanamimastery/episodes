@@ -12,7 +12,7 @@ module Main
         self.content = args[:content] || Faker::Lorem.sentences(number: 50).join(' ')
         self.thumbnail = args[:thumbnail] || "https://loremflickr.com/800/460/cat?lock=#{id}"
         self.author = Author.new
-        self.published_on = "1 Jan 2016"
+        self.published_on = '1 Jan 2016'
       end
     end
   end

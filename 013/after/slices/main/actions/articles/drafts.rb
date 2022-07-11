@@ -8,7 +8,7 @@ module Main
           repo: 'repositories.articles'
         ]
 
-        def handle(req, res)
+        def handle(_req, res)
           res.render view, articles: repo.drafts
         end
       end

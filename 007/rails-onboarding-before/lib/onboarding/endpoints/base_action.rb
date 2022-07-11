@@ -12,7 +12,7 @@ module Onboarding
         end
       end
 
-      def call(request)
+      def call(_request)
         Success()
       end
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "hanami/view/part"
+require 'hanami/view/part'
 
 module Sandbox
   module View

@@ -10,7 +10,7 @@ module Main
         include Dry::Effects.CurrentTime
 
         expose :message do
-          formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+          formatted_time = current_time.strftime('%Y-%m-%d %H:%M:%S')
           case locale
           when 'en' then "Welcome to Hanami Mastery #{formatted_time}!"
           when 'sw' then "Karibu Hanami Mastery #{formatted_time}!"

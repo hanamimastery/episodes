@@ -3,8 +3,7 @@
 class SubscribeToHanamiMasteryNewsletter
   # Subscribes the current reader to the newsletter
   #
-  def call()
-  end
+  def call; end
 end
 
 # Subscribes to the Youtube Channel
@@ -12,8 +11,7 @@ end
 class SubscribeToHanamiMasteryYoutubeChannel
   # Subscribes the current viewer to the Youtube Channel
   #
-  def call()
-  end
+  def call; end
 end
 
 class Action

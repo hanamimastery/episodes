@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "hanami_mastery/types"
-require "hanami/application/settings"
+require 'hanami_mastery/types'
+require 'hanami/application/settings'
 
 module HanamiMastery
   class Settings < Hanami::Application::Settings
@@ -16,6 +16,6 @@ module HanamiMastery
 
     # Assets
     setting :precompiled_assets, constructor: Types::Params::Bool.optional.default(false)
-    setting :assets_server_url, constructor: Types::String.optional.default("http://localhost:8080")
+    setting :assets_server_url, constructor: Types::String.optional.default('http://localhost:8080')
   end
 end

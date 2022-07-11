@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Onboarding::RegistrationsController', type: :request do
   describe '#create' do
-    let(:headers) { { } }
+    let(:headers) { {} }
     subject { post '/onboarding/signup', params: params, headers: headers }
 
-    shared_examples_for "failure" do
+    shared_examples_for 'failure' do
       it 'does not create the user' do
         expect { subject }.not_to change { User.count }
       end
@@ -34,7 +34,7 @@ RSpec.describe 'Onboarding::RegistrationsController', type: :request do
         expect(response.body).to be_empty
       end
 
-      it_behaves_like "failure"
+      it_behaves_like 'failure'
     end
 
     context 'when validation fails'  do
@@ -45,13 +45,13 @@ RSpec.describe 'Onboarding::RegistrationsController', type: :request do
         subject
         expect(response).to have_http_status(:unprocessable_entity)
         json = JSON.parse(response.body)['errors']
-        expect(json['name']).to contain_exactly("must be filled")
+        expect(json['name']).to contain_exactly('must be filled')
       end
 
-      it_behaves_like "failure"
+      it_behaves_like 'failure'
     end
 
-    context 'when business logic fails'  do
+    context 'when business logic fails' do
       let(:params) { { user: { name: 'You', email: 'subscribe@hanamimastery.com' } } }
       let(:headers) { { 'Authorization' => 'Bearer secret' } }
 
@@ -66,10 +66,10 @@ RSpec.describe 'Onboarding::RegistrationsController', type: :request do
         expect(json).to eq('too many subscriptions! Try again later')
       end
 
-      it_behaves_like "failure"
+      it_behaves_like 'failure'
     end
 
-    context 'successful request'  do
+    context 'successful request' do
       let(:params) { { user: { name: 'You', email: 'subscribe@hanamimastery.com' } } }
       let(:headers) { { 'Authorization' => 'Bearer secret' } }
 
@@ -81,7 +81,7 @@ RSpec.describe 'Onboarding::RegistrationsController', type: :request do
 
       it 'creates a user' do
         expect(User.exists?(email: 'subscribe@hanamimastery.com')).to be_falsey
-        expect{ subject }.to change{ User.count }.by(1)
+        expect { subject }.to change { User.count }.by(1)
         expect(User.exists?(email: 'subscribe@hanamimastery.com')).to be_truthy
       end
     end

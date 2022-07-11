@@ -25,7 +25,7 @@ articles = Main::Container[
     content: Faker::Lorem.sentences(number: 50).join(' '),
     thumbnail: "https://loremflickr.com/800/460/cat?lock=#{i}",
     author_id: author_ids.sample,
-    published_on: "1 Apr 2021",
+    published_on: '1 Apr 2021',
     state: rand(2) == 1 ? 'draft' : 'published'
   )
 end

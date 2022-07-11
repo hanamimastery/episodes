@@ -1,12 +1,12 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require "rom-repository"
-require_relative "entities"
+require 'rom-repository'
+require_relative 'entities'
 
 module HanamiMastery
   class Repository < ROM::Repository::Root
-    include Deps[container: "persistence.rom"]
+    include Deps[container: 'persistence.rom']
 
     struct_namespace Entities
   end

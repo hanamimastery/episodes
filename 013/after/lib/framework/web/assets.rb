@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require "down"
-require "yaml"
+require 'down'
+require 'yaml'
 
 module Framework
   module Web
     class Assets
-      attr_reader :root
-      attr_reader :precompiled
-      attr_reader :server_url
+      attr_reader :root, :precompiled, :server_url
 
       def initialize(root:, precompiled:, server_url: nil)
         @root = root

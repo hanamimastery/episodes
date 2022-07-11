@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "interlinker/view/context"
+require 'interlinker/view/context'
 
 module Main
   module View

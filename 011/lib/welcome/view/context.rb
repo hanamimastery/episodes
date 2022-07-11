@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require "hanami/view/context"
+require 'hanami/view/context'
 
 module Welcome
   module View
     class Context < Hanami::View::Context
       include Deps[
-        "assets",
-        "settings"
+        'assets',
+        'settings'
       ]
 
       def initialize(**args)
-        defaults = {content: {}}
+        defaults = { content: {} }
 
         super(**defaults.merge(args))
       end

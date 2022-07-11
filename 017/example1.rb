@@ -5,8 +5,7 @@ class Foo
   # @param name [Hash] sample argument
   # @return [NilClass]
   #
-  def call(name:)
-  end
+  def call(name:); end
 end
 
 # Does something else
@@ -15,9 +14,7 @@ class Bar
   # Does something cooler
   # @return [NilClass]
   #
-  def call
-  end
+  def call; end
 end
 
-
-Foo.new.call()
+Foo.new.call

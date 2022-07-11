@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require "find"
-require "tempfile"
-require "fileutils"
-require "pathname"
+require 'find'
+require 'tempfile'
+require 'fileutils'
+require 'pathname'
 require 'open3'
 
 class Installer
@@ -15,7 +15,7 @@ class Installer
       generate_cli_binstub
       self_destruct
 
-      puts "Your app is ready to go!"
+      puts 'Your app is ready to go!'
     end
 
     private
@@ -26,15 +26,15 @@ class Installer
     end
 
     def rename_file_contents(app_name)
-      dash_name = app_name.tr("_", "-")
-      snake_name = app_name.tr("-", "_")
+      dash_name = app_name.tr('_', '-')
+      snake_name = app_name.tr('-', '_')
       camel_name = camelize(snake_name)
       title_name = titleize(snake_name)
       replacements = {
-        "AppPrototype" => camel_name,
-        "app-prototype" => dash_name,
-        "app_prototype" => snake_name,
-        "App Prototype" => title_name
+        'AppPrototype' => camel_name,
+        'app-prototype' => dash_name,
+        'app_prototype' => snake_name,
+        'App Prototype' => title_name
       }
 
       find_files_for_gsub.each do |fname|
@@ -43,13 +43,13 @@ class Installer
     end
 
     def rename_file_names(app_name)
-      files, dirs = find_files_for_rename.partition{ |f| File.file? f }
+      files, dirs = find_files_for_rename.partition { |f| File.file? f }
       files.each do |orig_name|
-        new_name = orig_name.sub("app_prototype", app_name)
+        new_name = orig_name.sub('app_prototype', app_name)
         FileUtils.mv(orig_name, new_name, force: true, verbose: true) unless orig_name == new_name
       end
-      dirs.reverse.each do |orig_name| 
-        new_name = orig_name.sub("app_prototype", app_name)
+      dirs.reverse.each do |orig_name|
+        new_name = orig_name.sub('app_prototype', app_name)
         FileUtils.mv(orig_name, new_name, force: true, verbose: true) unless orig_name == new_name
       end
     end
@@ -58,7 +58,7 @@ class Installer
       files_or_dirs = []
       Find.find(d) do |path|
         if File.directory?(path)
-          if File.basename(path) == ".git"
+          if File.basename(path) == '.git'
             Find.prune
           else
             next
@@ -83,7 +83,7 @@ class Installer
         bname = File.basename(path)
         if File.directory?(path)
           case bname
-          when ".git"
+          when '.git'
             Find.prune
           when regexp
             if block_given?
@@ -130,53 +130,50 @@ class Installer
     end
 
     def bundle_install
-      puts "Running bundle install - this may take a few minutes"
-      shell "bundle install"
+      puts 'Running bundle install - this may take a few minutes'
+      shell 'bundle install'
     end
 
     def generate_cli_binstub
-      shell "bundle binstubs hanami-cli"
+      shell 'bundle binstubs hanami-cli'
     end
 
     def install_readme
-      FileUtils.mv("README.app.md", "README.md") rescue nil
+      FileUtils.mv('README.app.md', 'README.md')
+    rescue StandardError
+      nil
     end
 
     def self_destruct
-      FileUtils.rm(".github/FUNDING.yml", force: true, verbose: true)
-      FileUtils.rm("rm bin/install", force: true, verbose: true)
+      FileUtils.rm('.github/FUNDING.yml', force: true, verbose: true)
+      FileUtils.rm('rm bin/install', force: true, verbose: true)
     end
 
     def camelize(string)
-      result = string.sub(/^[a-z\d]*/) { $&.capitalize }
+      result = string.sub(/^[a-z\d]*/) { Regexp.last_match(0).capitalize }
       result.gsub(%r{(?:_|(/))([a-z\d]*)}) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
     end
 
     def titleize(underscored_string)
-      result = underscored_string.tr("_", " ")
+      result = underscored_string.tr('_', ' ')
       result.gsub(/\b('?[a-z])/) { Regexp.last_match(1).capitalize }
     end
 
-    def shell(command, env = {})
-      Open3.popen2e(command) do |stdin, stdout_err, wait_thr|
+    def shell(command, _env = {})
+      Open3.popen2e(command) do |_stdin, stdout_err, wait_thr|
         while line = stdout_err.gets
           puts line
         end
 
         exit_status = wait_thr.value
-        unless exit_status.success?
-          raise "#{command} failed with status #{exit_status}\n"
-        end
-      end 
+        raise "#{command} failed with status #{exit_status}\n" unless exit_status.success?
+      end
     end
-
   end
 end
 
 project_name = ARGV[0]
 
-unless project_name
-  raise "Please provide a snake_cased project name, e.g.\n\n./bin/install my_app"
-end
+raise "Please provide a snake_cased project name, e.g.\n\n./bin/install my_app" unless project_name
 
-Installer.(project_name)
+Installer.call(project_name)

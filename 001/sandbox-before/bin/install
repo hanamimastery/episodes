@@ -9,26 +9,27 @@ class Installer
       generate_cli_binstub
       self_destruct
 
-      puts "Your app is ready to go!"
+      puts 'Your app is ready to go!'
     end
 
     private
 
     # Borrowed from github.com/carbonfive/raygun
     def rename_app(app_name)
-      dash_name = app_name.tr("_", "-")
-      snake_name = app_name.tr("-", "_")
+      dash_name = app_name.tr('_', '-')
+      snake_name = app_name.tr('-', '_')
       camel_name = camelize(snake_name)
       title_name = titleize(snake_name)
 
       {
-        "AppPrototype"  => camel_name,
-        "app-prototype" => dash_name,
-        "app_prototype" => snake_name,
-        "App Prototype" => title_name
+        'AppPrototype' => camel_name,
+        'app-prototype' => dash_name,
+        'app_prototype' => snake_name,
+        'App Prototype' => title_name
       }.each do |proto_name, new_name|
         # LC_ALL=C is required to avoid "RE error: illegal byte sequence" errors on macOS
-        shell "find . -type f -print | grep --invert-match .git | xargs #{sed_i} 's/#{proto_name}/#{new_name}/g'", "LC_ALL" => "C"
+        shell "find . -type f -print | grep --invert-match .git | xargs #{sed_i} 's/#{proto_name}/#{new_name}/g'",
+              'LC_ALL' => 'C'
       end
 
       %w[d f].each do |find_type|
@@ -38,41 +39,39 @@ class Installer
     end
 
     def generate_cli_binstub
-      shell "bundle binstubs hanami-cli"
+      shell 'bundle binstubs hanami-cli'
     end
 
     def install_readme
-      shell "mv README.app.md README.md"
+      shell 'mv README.app.md README.md'
     end
 
     def self_destruct
-      shell "rm -f .github/FUNDING.yml"
-      shell "rm bin/install"
+      shell 'rm -f .github/FUNDING.yml'
+      shell 'rm bin/install'
     end
 
     def camelize(string)
-      result = string.sub(/^[a-z\d]*/) { $&.capitalize }
+      result = string.sub(/^[a-z\d]*/) { Regexp.last_match(0).capitalize }
       result.gsub(%r{(?:_|(/))([a-z\d]*)}) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
     end
 
     def titleize(underscored_string)
-      result = underscored_string.tr("_", " ")
+      result = underscored_string.tr('_', ' ')
       result.gsub(/\b('?[a-z])/) { Regexp.last_match(1).capitalize }
     end
 
-    def shell(command, env={})
+    def shell(command, env = {})
       result = system(env, command)
 
-      unless result
-        raise "#{command} failed with status #{$?.exitstatus}\n\n#{output}"
-      end
+      raise "#{command} failed with status #{$?.exitstatus}\n\n#{output}" unless result
     end
 
     # Distinguish BSD vs GNU sed with the --version flag (only present in GNU sed).
     def sed_i
       @sed_i ||= begin
         `sed --version &> /dev/null`
-        $?.success? ? "sed -i" : "sed -i ''"
+        $?.success? ? 'sed -i' : "sed -i ''"
       end
     end
   end
@@ -80,8 +79,6 @@ end
 
 project_name = ARGV[0]
 
-unless project_name
-  raise "Please provide a snake_cased project name, e.g.\n\n./bin/install my_app"
-end
+raise "Please provide a snake_cased project name, e.g.\n\n./bin/install my_app" unless project_name
 
-Installer.(project_name)
+Installer.call(project_name)

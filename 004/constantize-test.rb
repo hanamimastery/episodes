@@ -9,4 +9,4 @@ class HanamiMastery
   end
 end
 
-inflector.constantize('HanamiMastery').new.()
+inflector.constantize('HanamiMastery').new.call

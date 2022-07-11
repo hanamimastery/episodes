@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "sandbox/types"
+require 'sandbox/types'
 
 Hanami.application.settings do
   # Framework
@@ -14,5 +14,5 @@ Hanami.application.settings do
 
   # Assets
   setting :precompiled_assets, Sandbox::Types::Params::Bool.optional.default(false)
-  setting :assets_server_url, Sandbox::Types::String.optional.default("http://localhost:8080")
+  setting :assets_server_url, Sandbox::Types::String.optional.default('http://localhost:8080')
 end

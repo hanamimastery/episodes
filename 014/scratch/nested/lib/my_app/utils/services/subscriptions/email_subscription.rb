@@ -6,12 +6,13 @@ module MyApp
       module Subscriptions
         class EmailSubscription
           attr_reader :logger
+
           def initialize(logger: MyApp::Utils::Loggers::IOLogger.new)
             @logger = logger
           end
 
-          def call(email)
-            logger.call("@-_-@")
+          def call(_email)
+            logger.call('@-_-@')
           end
         end
       end

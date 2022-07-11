@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "hanami/application/routes"
+require 'hanami/application/routes'
 
 module HanamiMastery
   class Routes < Hanami::Application::Routes

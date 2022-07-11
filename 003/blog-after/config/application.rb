@@ -21,12 +21,11 @@ module Sandbox
       stream: settings.log_to_stdout ? $stdout : "log/#{Hanami.env}.log"
     }
 
-
     config.actions.default_headers = {
-      "X-Frame-Options" => "DENY",
-      "X-Content-Type-Options" => "nosniff",
-      "X-XSS-Protection" => "1; mode=block",
-      "Content-Security-Policy" => \
+      'X-Frame-Options' => 'DENY',
+      'X-Content-Type-Options' => 'nosniff',
+      'X-XSS-Protection' => '1; mode=block',
+      'Content-Security-Policy' => \
         "base-uri 'self'; " \
         "child-src 'self'; " \
         "connect-src 'self'; " \

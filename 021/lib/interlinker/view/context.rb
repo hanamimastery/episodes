@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "hanami/view/context"
+require 'hanami/view/context'
 
 module Interlinker
   module View

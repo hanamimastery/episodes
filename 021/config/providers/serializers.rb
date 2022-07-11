@@ -2,7 +2,7 @@
 
 Hanami.application.register_provider :serializers do
   start do
-    require "alba"
+    require 'alba'
 
     Alba.backend = :oj
     Alba.enable_inference!(with: :dry)

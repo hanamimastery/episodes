@@ -8,7 +8,7 @@ module Main
           repo: 'repositories.users'
         ]
 
-        def handle(req, res)
+        def handle(_req, res)
           res.body =
             Serializers::User.new(repo.all).serialize
         end

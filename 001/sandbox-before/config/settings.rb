@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "app_prototype/types"
+require 'app_prototype/types'
 
 Hanami.application.settings do
   # Framework
@@ -14,5 +14,5 @@ Hanami.application.settings do
 
   # Assets
   setting :precompiled_assets, AppPrototype::Types::Params::Bool.optional.default(false)
-  setting :assets_server_url, AppPrototype::Types::String.optional.default("http://localhost:8080")
+  setting :assets_server_url, AppPrototype::Types::String.optional.default('http://localhost:8080')
 end

@@ -28,10 +28,10 @@ class CommandBus
   #
   def init_handler(command_klass)
     handler_klass_str =
-      command_klass.split("::").tap do |items|
-      items[items.index('Commands')] = "CommandHandlers"
-      items[-1] = "On#{items[-1]}"
-    end.join("::")
+      command_klass.split('::').tap do |items|
+        items[items.index('Commands')] = 'CommandHandlers'
+        items[-1] = "On#{items[-1]}"
+      end.join('::')
 
     handler_klass = inflector.constantize(handler_klass_str)
     handler_klass.new
@@ -39,6 +39,6 @@ class CommandBus
 end
 
 bus = CommandBus.new
-bus.register("App::Commands::CancelPayment")
+bus.register('App::Commands::CancelPayment')
 
-p bus.method(:handlers).()
+p bus.method(:handlers).call

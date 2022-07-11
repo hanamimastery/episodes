@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "sandbox/view/context"
+require 'sandbox/view/context'
 
 module Main
   module View

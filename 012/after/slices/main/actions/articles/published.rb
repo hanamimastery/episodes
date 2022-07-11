@@ -11,7 +11,7 @@ module Main
 
         include JayDoubleuTee::Auth
 
-        def handle(req, res)
+        def handle(_req, res)
           res.headers['Content-Type'] = 'application/json'
 
           if authorizer.call(auth: auth)

@@ -1,7 +1,7 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require "sandbox/repository"
+require 'sandbox/repository'
 
 module Main
   class Repository < Sandbox::Repository

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "sandbox/types"
-require "hanami/application/settings"
+require 'sandbox/types'
+require 'hanami/application/settings'
 
 module Sandbox
   class Settings < Hanami::Application::Settings

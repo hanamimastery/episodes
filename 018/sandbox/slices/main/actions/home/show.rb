@@ -4,9 +4,9 @@ module Main
   module Actions
     module Home
       class Show < Action::Base
-        def handle(req, res)
+        def handle(_req, res)
           res.status = 200
-          res.body = "<h3>Hello, awesome suscriber!</h3>"
+          res.body = '<h3>Hello, awesome suscriber!</h3>'
         end
       end
     end

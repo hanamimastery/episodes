@@ -1,4 +1,4 @@
-key_id = "my_sample_key"
+key_id = 'my_sample_key'
 version = 1
 
 redis.eval(

@@ -1,7 +1,7 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require "dry/transformer"
+require 'dry/transformer'
 
 module AppPrototype
   module Functions
