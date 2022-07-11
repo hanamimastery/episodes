@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   AuthorizationError = Class.new(StandardError)
   rescue_from AuthorizationError, with: :render_forbidden

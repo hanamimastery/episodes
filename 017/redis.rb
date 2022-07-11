@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 key_id = 'my_sample_key'
 version = 1
 

@@ -9,7 +9,7 @@ module Onboarding
 
       def call(args)
         failure_message = 'too many subscriptions! Try again later'
-        return fail!(failure_message) if User.count > 0
+        return fail!(failure_message) if User.count.positive?
 
         User.create!(args)
         # schedule_email(args)

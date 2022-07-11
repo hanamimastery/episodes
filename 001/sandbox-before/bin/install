@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'English'
 class Installer
   class << self
     def call(app_name)
@@ -64,14 +65,14 @@ class Installer
     def shell(command, env = {})
       result = system(env, command)
 
-      raise "#{command} failed with status #{$?.exitstatus}\n\n#{output}" unless result
+      raise "#{command} failed with status #{$CHILD_STATUS.exitstatus}\n\n#{output}" unless result
     end
 
     # Distinguish BSD vs GNU sed with the --version flag (only present in GNU sed).
     def sed_i
       @sed_i ||= begin
         `sed --version &> /dev/null`
-        $?.success? ? 'sed -i' : "sed -i ''"
+        $CHILD_STATUS.success? ? 'sed -i' : "sed -i ''"
       end
     end
   end

@@ -6,7 +6,7 @@ module Rack
   class Locale
     include Dry::Effects::Handler.Reader(:locale)
 
-    SUPPORTED = %w[en sw]
+    SUPPORTED = %w[en sw].freeze
     DEFAULT = 'en'
     def initialize(app)
       @app = app

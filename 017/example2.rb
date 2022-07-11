@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Subscribes to the Newsletter
 #
 class SubscribeToHanamiMasteryNewsletter

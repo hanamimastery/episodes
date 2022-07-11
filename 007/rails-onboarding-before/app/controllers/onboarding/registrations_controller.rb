@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # frozen_string_literal :true
 
 module Onboarding
@@ -8,7 +10,7 @@ module Onboarding
       user = User.new(user_params)
 
       if user.valid?
-        if User.count > 0
+        if User.count.positive?
           message = 'too many subscriptions! Try again later'
           return render json: { errors: message }, status: 418
         end

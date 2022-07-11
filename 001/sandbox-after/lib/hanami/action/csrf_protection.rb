@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This is a standalone copy of Hanami::Action::CsrfProtection from Hanami gem,
 # adapted from
 # https://github.com/hanami/hanami/blob/master/lib/hanami/action/csrf_protection.rb

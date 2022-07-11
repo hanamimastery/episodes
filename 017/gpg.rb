@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if system('gpg --version')
   puts 'gnupg already installed'
 else

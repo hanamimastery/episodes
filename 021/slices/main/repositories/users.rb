@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # /lib/sandbox/persistence/repositories/articles.rb
 
 module Main
