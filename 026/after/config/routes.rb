@@ -9,6 +9,8 @@ module Sandbox
 
       get 'messages', to: 'messages.index'
       get 'messages/:id', to: 'messages.show'
+
+      get 'sitemap', to: 'sitemap.show'
     end
   end
 end
