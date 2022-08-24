@@ -1,0 +1,4 @@
+:schedule:
+  generate_sitemap:
+    class: Sandbox::Workers::GenerateSitemap
+    cron: '0 0 0 * * *'

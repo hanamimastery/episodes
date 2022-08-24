@@ -3,6 +3,7 @@
 Hanami.app.register_provider :sitemap, namespace: true do |container|
   prepare do
     require 'sitemap_generator'
+    require 'hanami/router/inspector'
     require 'hanami/router/formatter/csv'
 
     SitemapGenerator::Sitemap.default_host =
