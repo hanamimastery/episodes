@@ -13,6 +13,7 @@ gem "rake"
 
 group :development, :test do
   gem "dotenv"
+  gem "faker"
 end
 
 group :cli, :development, :test do
@@ -22,4 +23,3 @@ end
 group :test do
   gem "rack-test"
 end
-

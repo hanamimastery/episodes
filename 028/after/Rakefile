@@ -1,3 +1,9 @@
 # frozen_string_literal: true
 
-require "hanami/rake_tasks"
+require 'hanami/rake_task'
+
+namespace :db do
+  task :seed do
+    require Sandbox::Container.root.join('db/seed.rb').to_s
+  end
+end
