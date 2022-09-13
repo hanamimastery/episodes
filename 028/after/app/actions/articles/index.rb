@@ -4,9 +4,11 @@ module Sandbox
   module Actions
     module Articles
       class Index < Action
+        include Deps['persistence.rom']
+
         def handle(req, res)
           res.status = 200
-          relation = []
+          relation = rom.relations[:articles].combine(:author)
           res.body = relation.to_a.to_json
         end
       end

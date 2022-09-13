@@ -11,6 +11,10 @@ gem "dry-types"
 gem "puma"
 gem "rake"
 
+gem "rom"
+gem "rom-sql"
+gem "pg"
+
 group :development, :test do
   gem "dotenv"
   gem "faker"
