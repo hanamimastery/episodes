@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 container = Sandbox::Container
@@ -14,7 +16,7 @@ author_ids = authors.pluck(:id)
 puts author_ids
 
 articles = rom.relations[:articles]
-20.times do |i|
+20.times do
   articles.changeset(
     :create,
     {
