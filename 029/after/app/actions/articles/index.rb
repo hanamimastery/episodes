@@ -9,7 +9,13 @@ module Sandbox
         def handle(_req, res)
           res.status = 200
           relation = rom.relations[:articles].combine(:author)
-          res.body = relation.to_a.to_json
+          res.body = serialize(relation)
+        end
+
+        private
+
+        def serialize(collection)
+          collection.to_a.to_json
         end
       end
     end

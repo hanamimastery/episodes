@@ -4,5 +4,8 @@
 			"path": "./029/after"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"gitlens.codeLens.enabled": false,
+		"window.zoomLevel": 4
+	}
 }
