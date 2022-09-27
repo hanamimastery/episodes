@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Hanami.app.register_provider :persistence, namespace: true do
   prepare do
     require 'rom-changeset'
@@ -6,7 +8,9 @@ Hanami.app.register_provider :persistence, namespace: true do
 
     config =
       ROM::Configuration.new(
-        :sql, target['settings'].database_url
+        :sql,
+        target['settings'].database_url,
+        extensions: %i[pg_array pg_json]
       )
 
     register 'config', config

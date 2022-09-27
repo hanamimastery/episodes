@@ -7,5 +7,9 @@ module Sandbox
     include Deps[container: 'persistence.rom']
 
     commands :create
+
+    def all
+      root
+    end
   end
 end
