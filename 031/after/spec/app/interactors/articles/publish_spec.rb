@@ -12,7 +12,7 @@ RSpec.describe Sandbox::Interactors::Articles::Publish do
     end
   end
 
-  context 'when given article is already published' do
+  context 'when given article is already published', effects: :current_time do
     let(:article) { repo.create(published_on: Date.parse('2022-09-09')) }
 
     it 'succeeds with not_modified' do
