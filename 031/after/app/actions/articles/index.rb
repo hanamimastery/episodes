@@ -6,10 +6,13 @@ module Sandbox
       class Index < Get
         include Deps[repo: 'repositories.articles']
 
-        def handle(_req, res)
+        include Utils::Paginable
+
+        def handle(req, res)
           res.status = 200
           relation = repo.articles_with_authors
-          res.body = serialize(relation)
+          paginated = paginate(relation, req.params)
+          res.body = serialize(paginated)
         end
       end
     end
