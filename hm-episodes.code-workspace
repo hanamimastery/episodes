@@ -6,6 +6,6 @@
 	],
 	"settings": {
 		"gitlens.codeLens.enabled": false,
-		"window.zoomLevel": 3
+		"window.zoomLevel": 4
 	}
 }
