@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
+require 'dry/types'
+
 module Sandbox
   module Actions
     module Articles
-      class Index < Action
-        include Deps[repo: 'repositories.articles']
+      class Publish < Action
+        include Deps[interactor: 'interactors.articles.publish']
+
+        params do
+          required(:id).value(Dry::Types::Coercible::Integer)
+        end
 
         def handle(_req, res)
-          res.status = 200
-          relation = repo.articles_with_authors
-          res.body = serialize(relation)
+          interactor.call(res.params)
         end
 
         private

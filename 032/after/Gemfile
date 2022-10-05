@@ -20,6 +20,7 @@ gem "pg"
 
 group :development, :test do
   gem "dotenv"
+  gem "byebug"
   gem "faker"
 end
 
