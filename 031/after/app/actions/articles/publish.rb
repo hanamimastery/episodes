@@ -5,21 +5,15 @@ require 'dry/types'
 module Sandbox
   module Actions
     module Articles
-      class Publish < Action
+      class Publish < Patch
         include Deps[interactor: 'interactors.articles.publish']
 
         params do
-          required(:id).value(Dry::Types::Coercible::Integer)
+          required(:id).value(Types::Coercible::Integer)
         end
 
         def handle(_req, res)
-          interactor.call(res.params)
-        end
-
-        private
-
-        def serialize(collection)
-          collection.map(&:to_h).to_json
+          res[:result] = interactor.call(res.params)
         end
       end
     end
