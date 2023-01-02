@@ -38,7 +38,6 @@ module HanamiMastery
       desc 'Removes shot marks from a given article [🎬 01]'
 
       argument :episode, type: :integer, required: true, desc: "Episodes ID to unshot"
-      option :one, type: :boolean, default: false, desc: "Graceful stop"
 
       def initialize
         @repository = HanamiMastery::Repositories::Episodes.new
@@ -47,15 +46,17 @@ module HanamiMastery
 
       attr_reader :transformation, :repository
 
-      def call(episode:, one:, **)
+      def call(episode:, **)
         content = repository.read(episode)
         processed = transformation.call(content, one: false)
         repository.replace(episode, processed)
       end
     end
 
-    register 'unshot', Unshot
-    register 'touch', Touch
+    register "modify", aliases: ["m"] do |prefix|
+      prefix.register "unshot", Unshot
+      prefix.register "touch", Touch
+    end
   end
 end
 

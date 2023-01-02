@@ -4,26 +4,39 @@
 module HanamiMastery
   module Repositories
     class Episodes
+      REPO_PATH = '/Users/Sebastian/Projects/hanamimastery/source'
       # Reads the episode file content
       #
       def read(id)
-        File.read(file_path(id))
+        File.read(find(id))
       end
 
       # Replaces the whole file content with the new content
       #
       def replace(id, new_content)
-        File.write(file_path(id), new_content)
+        File.write(find(id), new_content)
       end
 
       def exists?(id)
-        File.exists?(file_path(id))
+        File.exists?(find(id))
       end
 
       private
 
-      def file_path(id)
-        "./HME#{'%03d' % id}.md"
+      def file_name(id)
+        episodes.find { |filename| filename.match?(/^#{id.to_i.to_s}-/)}
+      end
+
+      def find(id)
+        [file_path, file_name(id)].join('/')
+      end
+
+      def episodes
+        Dir[[file_path, '*'].join('/')].map { |i| i.split('/').last }
+      end
+
+      def file_path
+        [REPO_PATH, 'data/episodes'].join('/')
       end
     end
   end

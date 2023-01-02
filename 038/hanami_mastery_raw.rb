@@ -8,13 +8,12 @@ require_relative './transformations/unshot.rb'
 repository = HanamiMastery::Repositories::Episodes.new
 
 command = ARGV.shift
-
 case command
 when 'unshot'
   id = ARGV.shift
   content = repository.read(id)
   cmd = HanamiMastery::Transformations::Unshot.new
-  processed = cmd.call(content, one: false)
+  processed = cmd.call(content)
   repository.replace(id, processed)
 when 'touch'
   id = ARGV.shift
