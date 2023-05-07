@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require "erbse"
-require "hanami/view"
+require "hanami-view"
 
 module Hanamimastery
   # The application view.

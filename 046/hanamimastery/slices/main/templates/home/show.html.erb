@@ -1,9 +1,11 @@
-<h1>Welcome to HanamiMastery!</h1>
+<h1 class="notification is-primary">
+  <%= title %>
+</h1>
 
-<p>Consider subscribing?!</p>
+<h1 class="title is-1">Consider subscribing?!</h1>
 
 <div id="parent">
-  <button hx-post="/subscribe" hx-swap="outerHTML" hx-target="#parent">
+  <button hx-post="/subscribe" hx-swap="outerHTML" hx-target="#parent" class="button is-primary">
     Click Me to Subscribe!
   </button>
 </div>

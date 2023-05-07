@@ -5,7 +5,7 @@ module Main
     module Home
       class Subscribe < Main::Action
         def handle(*, response)
-          response.body = "Subscribed!"
+          response.body = '<span class="notification">Subscribed!</span>'
         end
       end
     end
