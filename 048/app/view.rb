@@ -1,11 +1,10 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require "erbse"
-require "hanami-view"
+require "phlex"
 
 module Hanamimastery
   # The application view.
-  class View < Hanami::View
+  class View < Phlex::HTML
   end
 end
