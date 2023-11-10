@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+require 'dry-container'
+
+require_relative 'lib/my_app/utils/loggers/io_logger'
+require_relative 'lib/my_app/utils/services/subscriptions/email_subscription'
+require_relative 'slices/blog/commands/become_awesome_subscriber'
+
 class Container
   extend Dry::Container::Mixin
 end
