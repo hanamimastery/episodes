@@ -156,7 +156,7 @@ class Installer
     end
 
     def camelize(string)
-      result = string.sub(/^[a-z\d]*/) { ::Regexp.last_match(0).capitalize }
+      result = string.sub(/^[a-z\d]*/) { Regexp.last_match(0).capitalize }
       result.gsub(%r{(?:_|(/))([a-z\d]*)}) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
     end
 
