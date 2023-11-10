@@ -3,7 +3,7 @@
 
 require "dry/types"
 
-module AppPrototype
+module Sandbox
   module Types
     include Dry.Types
   end

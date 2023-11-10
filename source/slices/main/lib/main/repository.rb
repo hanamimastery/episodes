@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "app_prototype/repository"
+require "sandbox/repository"
 require_relative "entities"
 
 module Main
-  class Repository < AppPrototype::Repository
+  class Repository < Sandbox::Repository
     struct_namespace Entities
   end
 end
