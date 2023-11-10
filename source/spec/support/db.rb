@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # require_with_metadata: true
 
 require_relative 'db/helpers'

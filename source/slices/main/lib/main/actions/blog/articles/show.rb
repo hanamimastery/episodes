@@ -3,7 +3,9 @@
 module Main
   module Actions
     module Blog
-      class Articles < Main::Action
+      module Articles
+        class Show < Main::Action
+        end
       end
     end
   end
