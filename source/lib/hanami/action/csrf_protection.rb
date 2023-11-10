@@ -93,9 +93,9 @@ module Hanami
       # @since 0.4.0
       # @api private
       IDEMPOTENT_HTTP_METHODS = Hash[
-        'GET'     => true,
-        'HEAD'    => true,
-        'TRACE'   => true,
+        'GET' => true,
+        'HEAD' => true,
+        'TRACE' => true,
         'OPTIONS' => true
       ].freeze
 
@@ -115,11 +115,12 @@ module Hanami
       end
 
       private
+
       # Set CSRF Token in session
       #
       # @since 0.4.0
       # @api private
-      def set_csrf_token(req, res)
+      def set_csrf_token(_req, res)
         res.session[CSRF_TOKEN] ||= generate_csrf_token
       end
 
@@ -153,7 +154,7 @@ module Hanami
       # Verify the CSRF token was passed in params.
       #
       # @api private
-      def missing_csrf_token?(req, res)
+      def missing_csrf_token?(req, _res)
         Hanami::Utils::Blank.blank?(req.params[CSRF_TOKEN])
       end
 
@@ -187,7 +188,7 @@ module Hanami
       #       end
       #     end
       #   end
-      def verify_csrf_token?(req, res)
+      def verify_csrf_token?(req, _res)
         !IDEMPOTENT_HTTP_METHODS[req.request_method]
       end
 
@@ -217,9 +218,9 @@ module Hanami
       #       end
       #     end
       #   end
-      def handle_invalid_csrf_token(req, res)
+      def handle_invalid_csrf_token(_req, res)
         res.session.clear
-        raise InvalidCSRFTokenError.new
+        raise InvalidCSRFTokenError
       end
     end
   end
