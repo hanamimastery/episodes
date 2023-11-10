@@ -4,4 +4,8 @@
   e.g. @import "./some-module";
 */
 
-@import "bulma/css/bulma";
+/* @import "bulma/css/bulma.css"; */
+
+body {
+  background-color: #000;
+}

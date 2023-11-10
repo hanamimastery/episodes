@@ -16,4 +16,4 @@ if ! command -v overmind > /dev/null; then
 fi
 
 # Boot the app and any other necessary processes
-exec env OVERMIND_PORT=2300 overmind start -f Procfile.dev
+exec env OVERMIND_PORT=3000 overmind start -f Procfile.dev
