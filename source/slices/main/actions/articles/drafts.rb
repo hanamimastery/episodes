@@ -5,12 +5,11 @@ module Main
     module Articles
       class Drafts < Main::Action
         include Deps[
-          repo: 'persistence.repositories.articles',
+          repo: 'application.persistence.repositories.articles'
         ]
 
         def handle(_req, res)
-          res.headers['Content-Type'] = 'application/json'
-          res.body = Serializers::Article.new(repo.drafts).serialize
+          res.render view, articles: repo.drafts
         end
       end
     end

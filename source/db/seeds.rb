@@ -7,7 +7,7 @@
 require 'faker'
 
 authors = Main::Container[
-  'persistence.repositories.authors'
+  'repositories.authors'
 ]
 
 authors.create(first_name: 'Seb', last_name: 'Wilgosz')
@@ -17,7 +17,7 @@ authors.create(first_name: 'Awesome', last_name: 'Subscriber')
 author_ids = authors.all.to_a.map(&:id)
 
 articles = Main::Container[
-  'persistence.repositories.articles'
+  'repositories.articles'
 ]
 
 20.times do |i|

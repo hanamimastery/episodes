@@ -12,7 +12,4 @@ require 'rack/method_override'
 use Rack::MethodOverride
 
 require 'hanami/boot'
-
-use JayDoubleuTee::Authorization
-
-run Hanami.app
+run Hanami.rack_app
