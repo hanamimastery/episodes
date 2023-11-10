@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
+require 'dry/effects'
+require 'dry/monads'
+
 RSpec.configure do |config|
+  config.include Dry::Effects::Handler.CurrentTime #, effects: :current_time
+  config.include Dry::Effects.CurrentTime #, effects: :current_time
+
+  config.around { |ex| with_current_time(&ex) }
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

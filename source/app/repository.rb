@@ -8,10 +8,14 @@ module Sandbox
 
     struct_namespace Entities
 
-    commands :create
+    commands :create, update: :by_pk
 
     def all
       root
+    end
+
+    def find(id)
+      root.by_pk(id).one!
     end
   end
 end
