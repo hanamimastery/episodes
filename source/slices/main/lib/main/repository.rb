@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'hanami_mastery/repository'
+require 'sandbox/repository'
 require_relative 'entities'
 
 module Main
-  class Repository < HanamiMastery::Repository
+  class Repository < Sandbox::Repository
     struct_namespace Entities
   end
 end

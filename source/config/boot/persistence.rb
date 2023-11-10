@@ -20,7 +20,7 @@ Hanami.application.register_bootable :persistence, namespace: true do |container
 
   start do
     config = container['persistence.config']
-    config.auto_registration container.root.join('lib/hanami_mastery/persistence')
+    config.auto_registration container.root.join('lib/sandbox/persistence')
 
     register 'rom', ROM.container(config)
   end

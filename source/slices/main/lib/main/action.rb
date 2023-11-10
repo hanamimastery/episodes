@@ -1,9 +1,9 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require 'hanami_mastery/action'
+require 'sandbox/action'
 
 module Main
-  class Action < HanamiMastery::Action
+  class Action < Sandbox::Action
   end
 end

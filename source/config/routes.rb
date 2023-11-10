@@ -2,13 +2,11 @@
 
 require 'hanami/application/routes'
 
-module HanamiMastery
+module Sandbox
   class Routes < Hanami::Application::Routes
     define do
       slice :main, at: '/' do
-        root to: 'home.show'
-
-        get '/articles', to: 'blog.articles.index'
+        root to: 'blog.articles.index'
         get '/articles/:id', to: 'blog.articles.show'
       end
     end

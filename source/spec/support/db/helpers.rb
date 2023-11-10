@@ -37,7 +37,7 @@ module Test
           when :main
             Main::Entities
           else
-            HanamiMastery::Entities
+            Sandbox::Entities
           end
       end
     end

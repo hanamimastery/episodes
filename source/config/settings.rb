@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'hanami_mastery/types'
+require 'sandbox/types'
 require 'hanami/application/settings'
 
-module HanamiMastery
+module Sandbox
   class Settings < Hanami::Application::Settings
     # Framework
     setting :log_to_stdout, constructor: Types::Params::Bool.optional.default(false)

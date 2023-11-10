@@ -3,7 +3,7 @@
 
 require 'hanami/action'
 
-module HanamiMastery
+module Sandbox
   class Action < Hanami::Action
   end
 end

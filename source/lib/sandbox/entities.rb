@@ -1,7 +1,7 @@
 # auto_register: false
 # frozen_string_literal: true
 
-module HanamiMastery
+module Sandbox
   module Entities
   end
 end

@@ -4,7 +4,7 @@
 require 'rom-repository'
 require_relative 'entities'
 
-module HanamiMastery
+module Sandbox
   class Repository < ROM::Repository::Root
     include Deps[container: 'persistence.rom']
 
