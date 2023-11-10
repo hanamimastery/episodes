@@ -2,11 +2,14 @@
 
 require 'hanami/application/routes'
 
-module Welcome
+module Sandbox
   class Routes < Hanami::Application::Routes
     define do
       slice :main, at: '/' do
         root to: 'home.show'
+
+        get '/articles', to: 'articles.published'
+        get '/articles/drafts', to: 'articles.drafts'
       end
     end
   end

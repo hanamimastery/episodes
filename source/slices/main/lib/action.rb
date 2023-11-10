@@ -1,9 +1,9 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require 'welcome/action'
+require 'sandbox/action'
 
 module Main
-  class Action < Welcome::Action
+  class Action < Sandbox::Action
   end
 end

@@ -1,4 +1,4 @@
-# Welcome
+# Sandbox
 
 This is a Hanami 2 application.
 
