@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
-# This file is used by Rack-based servers to start the application.
+require 'rack/static'
+use Rack::Static,
+    urls: ['/assets'],
+    root: '.assets/tmp',
+    header_rules: [
+      ['/assets', { 'Cache-Control' => 'public, max-age=31536000' }]
+    ]
 
-require_relative 'config/environment'
+require 'rack/method_override'
+use Rack::MethodOverride
 
-run Rails.application
-Rails.application.load_server
+require 'hanami/boot'
+run Hanami.app

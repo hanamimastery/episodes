@@ -1,48 +1,55 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+source 'https://rubygems.org/'
 
-ruby '2.7.2'
+# Core gems
+gem 'rake', '~> 13.0'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.4'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
-# Use Puma as the app server
-gem 'puma', '~> 5.0'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.7'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Application framework
+gem 'hanami', github: 'hanami/hanami', branch: :main
+%w[hanami-cli hanami-controller hanami-router hanami-utils hanami-view].each do |name|
+  gem name, '~> 2.0.0.alpha'
+end
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+# HTTP
+gem 'down', '~> 5.1'
+gem 'puma', '~> 4.0'
 
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
+# Database
+gem 'rom', '~> 5.2'
+gem 'rom-factory', '~> 0.10'
+gem 'rom-sql', '~> 3.2'
+gem 'sequel', '~> 5.32'
+gem 'sqlite3'
 
-gem 'dry-matcher', require: false
-gem 'dry-monads', require: false
-gem 'dry-validation', require: false
+# Application
+gem 'dry-matcher', '~> 0.8'
+gem 'dry-monads', '~> 1.2'
+gem 'dry-struct', '~> 1.0'
+gem 'dry-transformer', '~> 0.1'
+gem 'dry-types', '~> 1.0'
+gem 'dry-validation', '~> 1.4'
+gem 'erbse', '~> 0.1'
+gem 'i18n', '~> 1.8'
+gem 'slim', '~> 4.0'
 
-gem 'rspec-rails'
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
-
+# Development/test
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'break', '~> 0.21'
+  gem 'dotenv', '~> 2.7'
+  gem 'guard-rack', '~> 2.2'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'standard'
 end
 
-group :development do
-  gem 'listen', '~> 3.3'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+# Test
+group :test do
+  gem 'capybara', '~> 3.0'
+  gem 'capybara-screenshot', '~> 1.0'
+  gem 'cuprite', '~> 0.8'
+  gem 'database_cleaner', '~> 1.7'
+  gem 'puffing-billy', '~> 2.2'
+  gem 'rspec', '~> 3.9'
+  gem 'simplecov', '~> 0.17'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
