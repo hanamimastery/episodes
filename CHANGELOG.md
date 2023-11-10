@@ -2,6 +2,12 @@
 
 Here you can see all the code comparison links
 
+## HME012 2022-11-29
+
+**Source:** https://github.com/hanamimastery/episodes/tree/HME012
+**Changes:** https://github.com/hanamimastery/episodes/compare/HME012-pre...HME012
+
+
 ## HME011 2022-11-29
 
 **Source:** https://github.com/hanamimastery/episodes/tree/HME011

@@ -11,11 +11,11 @@ module Main
         end
 
         def drafts
-          with_author.where(state: 'draft')
+          with_author.where(state: 'draft').to_a
         end
 
         def published
-          with_author.where(state: 'published')
+          with_author.where(state: 'published').to_a
         end
 
         def find(id)

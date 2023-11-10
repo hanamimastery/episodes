@@ -16,5 +16,8 @@ module Sandbox
 
     # Assets
     setting :precompiled_assets, constructor: Types::Params::Bool, default: false
+
+    # JWT
+    setting :jwt_public_key, constructor: Types::String
   end
 end
