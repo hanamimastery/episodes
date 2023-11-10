@@ -1,5 +1,0 @@
-tmp/
-log/
-/.env
-!/.env*-*
-/spec/examples.txt
