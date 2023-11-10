@@ -12,6 +12,8 @@ gem "hanami", "~> 2.0.0.beta"
 gem "puma"
 
 gem "redis-namespace"
+gem "sidekiq", "~> 6.5"
+gem "sidekiq-scheduler"
 
 gem "sitemap_generator"
 
