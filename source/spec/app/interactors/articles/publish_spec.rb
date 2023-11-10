@@ -12,8 +12,8 @@ RSpec.describe Sandbox::Interactors::Articles::Publish do
     end
   end
 
-  context 'when given article is already published' do
-    let(:article) { repo.create(published_on: Date.parse('2022-09-09')) }
+  context 'when given article is already published', effects: :current_time do
+    let(:article) { Factory[:published_article] }
 
     it 'succeeds with not_modified' do
       res = subject.call(article.id)
@@ -28,7 +28,7 @@ RSpec.describe Sandbox::Interactors::Articles::Publish do
   end
 
   context 'when given article is not published', effects: :current_time do
-    let(:article) { repo.create(published_on: nil) }
+    let(:article) { Factory[:article] }
 
     it 'results with success' do
       res = subject.call(article.id)

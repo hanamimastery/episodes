@@ -21,6 +21,7 @@ gem "pg"
 group :development, :test do
   gem "dotenv"
   gem "faker"
+  gem "rom-factory"
 end
 
 group :cli, :development, :test do
