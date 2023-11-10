@@ -13,6 +13,8 @@ gem "puma"
 
 gem "redis-namespace"
 
+gem "sitemap_generator"
+
 group :cli, :development, :test do
   gem "dotenv"
   gem "hanami-rspec"
