@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-Hanami.application.routes do
-  slice :main, at: '/' do
-    root to: 'home.show'
+module Sandbox
+  class Routes < Hanami::Routes
+    define do
+      root to: 'home.show'
+    end
   end
 end

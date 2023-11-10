@@ -2,17 +2,15 @@
 
 require 'sandbox/types'
 
-Hanami.application.settings do
-  # Framework
-  setting :log_to_stdout, Sandbox::Types::Params::Bool.optional.default(false)
+module Sandbox
+  class Settings < Hanami::Settings
+    # Database
+    setting :database_url, constructor: Types::String
 
-  # Database
-  setting :database_url, Sandbox::Types::String
+    # Application
+    setting :session_secret, constructor: Types::String
 
-  # Application
-  setting :session_secret, Sandbox::Types::String
-
-  # Assets
-  setting :precompiled_assets, Sandbox::Types::Params::Bool.optional.default(false)
-  setting :assets_server_url, Sandbox::Types::String.optional.default('http://localhost:8080')
+    # Assets
+    setting :precompiled_assets, constructor: Types::Params::Bool, default: false
+  end
 end

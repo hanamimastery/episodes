@@ -20,12 +20,12 @@ preload_app!
 rackup DefaultRackup
 
 # Specify the port that Puma will listen on
-port ENV.fetch('PORT', 3000)
+port ENV.fetch('PORT', 2300)
 
 # Specify the environment Puma will run in
 environment ENV.fetch('HANAMI_ENV', 'development')
 
-# Disconnect from rom gateways before forking
+# Shutdown the application before forking
 before_fork do
-  Hanami.application['persistence.rom'].disconnect
+  Hanami.shutdown
 end
