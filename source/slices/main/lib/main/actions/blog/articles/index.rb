@@ -5,6 +5,13 @@ module Main
     module Blog
       module Articles
         class Index < Main::Action
+          include Deps[
+            repo: 'application.persistence.repositories.articles'
+          ]
+
+          def handle(_req, res)
+            res.render view, articles: repo.all
+          end
         end
       end
     end
