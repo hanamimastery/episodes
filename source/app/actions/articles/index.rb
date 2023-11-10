@@ -4,12 +4,18 @@ module Sandbox
   module Actions
     module Articles
       class Index < Action
-        include Deps['persistence.rom']
+        include Deps[repo: 'repositories.articles']
 
-        def handle(req, res)
+        def handle(_req, res)
           res.status = 200
-          relation = rom.relations[:articles].combine(:author)
-          res.body = relation.to_a.to_json
+          relation = repo.articles_with_authors
+          res.body = serialize(relation)
+        end
+
+        private
+
+        def serialize(collection)
+          collection.map(&:to_h).to_json
         end
       end
     end

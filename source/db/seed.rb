@@ -1,20 +1,25 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 container = Sandbox::Container
-rom = container['persistence.rom']
-# repo = container['repositories.authors']
+repo = container['repositories.authors']
 
-authors = rom.relations[:authors]
-authors.changeset(:create, { first_name: 'Seb', last_name: 'Wilgosz', nickname: 'swilgosz' }).commit
-authors.changeset(:create, { first_name: 'Hanami', last_name: 'Master', nickname: 'hm' }).commit
-authors.changeset(:create, { first_name: 'Awesome', last_name: 'Subscriber', nickname: 'awesomesub' }).commit
+data = { first_name: 'Seb', last_name: 'Wilgosz', nickname: 'swilgosz' }
+repo.create(data)
+
+data = { first_name: 'Hanami', last_name: 'Master', nickname: 'hm' }
+repo.create(data)
+
+data = { first_name: 'Awesome', last_name: 'Subscriber', nickname: 'awesomesub' }
+repo.create(data)
 
 author_ids = authors.pluck(:id)
 
 puts author_ids
 
 articles = rom.relations[:articles]
-20.times do |i|
+20.times do
   articles.changeset(
     :create,
     {
