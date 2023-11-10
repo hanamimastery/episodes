@@ -2,7 +2,20 @@
 
 Here you can see all the code comparison links
 
+## HME019 2022-04-17
 
+**Source:** https://github.com/hanamimastery/episodes/tree/HME019
+**Changes:** https://github.com/hanamimastery/episodes/compare/HME019-pre...HME019
+
+## HME018 2022-04-15
+
+**Source:** https://github.com/hanamimastery/episodes/tree/HME018
+**Changes:** https://github.com/hanamimastery/episodes/compare/HME018-pre...HME018
+
+## HME017 2022-03-12
+
+**Source:** https://github.com/hanamimastery/episodes/tree/HME017
+**Changes:** https://github.com/hanamimastery/episodes/compare/HME017-pre...HME017
 
 ## HME016 2022-03-01
 
