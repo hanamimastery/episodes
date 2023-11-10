@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "hanami/view"
-require_relative "parts"
+require 'hanami/view'
+require_relative 'parts'
 
 module Main
   module View

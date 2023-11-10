@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "dry/system/magic_comments_parser"
-require "json"
-require "pathname"
-require "rspec"
+require 'dry/system/magic_comments_parser'
+require 'json'
+require 'pathname'
+require 'rspec'
 
 module Test
   module SuiteHelpers
@@ -21,7 +21,7 @@ module Test
       end
     end
 
-    SUITE_PATH = "spec/suite"
+    SUITE_PATH = 'spec/suite'
 
     attr_reader :root
 
@@ -35,30 +35,30 @@ module Test
     end
 
     def init_application
-      require_relative "../../config/application"
+      require_relative '../../config/application'
       @application = Hanami.init
     end
 
     def start_coverage
       return unless coverage?
 
-      require "simplecov"
+      require 'simplecov'
 
       SimpleCov.command_name(test_group_name) if parallel?
 
       SimpleCov.start do
-        add_filter "/spec/"
-        add_filter "/system/"
+        add_filter '/spec/'
+        add_filter '/system/'
       end
     end
 
     def coverage_threshold
-      ENV.fetch("COVERAGE_THRESHOLD").to_f.round
+      ENV.fetch('COVERAGE_THRESHOLD').to_f.round
     end
 
     def current_coverage
-      data = JSON.parse(File.open(application.root.join("coverage/.last_run.json")).read)
-      data.fetch("result").fetch("covered_percent").to_f.round
+      data = JSON.parse(File.open(application.root.join('coverage/.last_run.json')).read)
+      data.fetch('result').fetch('covered_percent').to_f.round
     end
 
     def test_group_name
@@ -67,13 +67,13 @@ module Test
 
     def chdir(name)
       self.class.new(
-        application: application,
+        application:,
         root: root.join(name.to_s)
       )
     end
 
     def files
-      dirs.map { |dir| dir.join("**/*_spec.rb") }.flat_map { |path| Dir[path] }.sort
+      dirs.map { |dir| dir.join('**/*_spec.rb') }.flat_map { |path| Dir[path] }.sort
     end
 
     def groups
@@ -81,31 +81,31 @@ module Test
     end
 
     def dirs
-      Dir[root.join("*")].map(&Kernel.method(:Pathname)).select(&:directory?)
+      Dir[root.join('*')].map(&Kernel.method(:Pathname)).select(&:directory?)
     end
 
     def ci?
-      !ENV["CI"].nil?
+      !ENV['CI'].nil?
     end
 
     def parallel?
-      ENV["CI_NODE_TOTAL"].to_i > 1
+      ENV['CI_NODE_TOTAL'].to_i > 1
     end
 
     def build_idx
-      ENV.fetch("CI_NODE_INDEX", -1).to_i
+      ENV.fetch('CI_NODE_INDEX', -1).to_i
     end
 
     def coverage?
-      ENV["COVERAGE"] == "true"
+      ENV['COVERAGE'] == 'true'
     end
 
     def log_dir
-      Pathname(application.root).join("log")
+      Pathname(application.root).join('log')
     end
 
     def tmp_dir
-      Pathname(application.root).join("tmp")
+      Pathname(application.root).join('tmp')
     end
   end
 end
@@ -121,9 +121,9 @@ RSpec.configure do |config|
 
   config.define_derived_metadata file_path: %r{/suite/} do |metadata|
     metadata[:group] = metadata[:file_path]
-      .split("/")
-      .then { |parts| parts[parts.index("suite") + 1] }
-      .to_sym
+                       .split('/')
+                       .then { |parts| parts[parts.index('suite') + 1] }
+                       .to_sym
   end
 
   # Add more derived metadata rules here, e.g.
@@ -139,7 +139,7 @@ RSpec.configure do |config|
 
   ## Feature loading
 
-  Dir[File.join(__dir__, "*.rb")].sort.each do |file|
+  Dir[File.join(__dir__, '*.rb')].sort.each do |file|
     options = Dry::System::MagicCommentsParser.call(file)
     tag_name = options[:require_with_metadata]
 
@@ -153,9 +153,9 @@ RSpec.configure do |config|
   end
 
   config.suite.groups.each do |group|
-    config.when_first_matching_example_defined group: group do
+    config.when_first_matching_example_defined(group:) do
       require_relative group.to_s
-    rescue LoadError # rubocop:disable Lint/SuppressedException
+    rescue LoadError
     end
   end
 end
