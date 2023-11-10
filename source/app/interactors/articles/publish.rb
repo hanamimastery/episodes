@@ -18,8 +18,6 @@ module Sandbox
           publish(article)
         end
 
-        private
-
         def find(id)
           Success(repo.articles.where(id: id).one!)
         rescue ROM::TupleCountMismatchError
