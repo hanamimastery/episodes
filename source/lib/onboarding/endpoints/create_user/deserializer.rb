@@ -7,14 +7,12 @@ module Onboarding
     module CreateUser
       class Deserializer
         include Dry::Monads[:do, :result, :try]
-        include Dry::Matcher.for(:call, with: Dry::Matcher::ResultMatcher)
 
         def call(request)
-          # just for simplicity
           params = ActionController::Parameters.new(request.params)
 
           model = yield deserialize(params)
-          auth = yield authorize(request.headers['Authorization'])
+          auth = yield fetch_token(request)
 
           Success([model, auth])
         end
@@ -23,14 +21,15 @@ module Onboarding
 
         def deserialize(params)
           res = Try[ActionController::ParameterMissing] do
-            params.require(:user).permit(:name, :email).to_h
+            params.require(:user).permit(:name, :email)
           end
 
           res.error? ? Failure(:deserialize) : res
         end
 
-        def authorize(token)
-          Success(token.to_s.gsub('Bearer ', ''))
+        def fetch_token(request)
+          token = request.headers['Authorization'].to_s
+          Success(token.gsub('Bearer ', ''))
         end
       end
     end

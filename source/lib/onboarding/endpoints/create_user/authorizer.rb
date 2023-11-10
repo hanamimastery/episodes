@@ -9,7 +9,7 @@ module Onboarding
         include Dry::Monads[:result]
 
         def call(_model, auth)
-          auth.present? ? Success() : Failure(:authorize)
+          auth.length.zero? ? Failure(:authorize) : Success()
         end
       end
     end

@@ -8,11 +8,16 @@ module Onboarding
       include Dry::Monads[:result, :try]
 
       def call(args)
-        return fail!('too many subscriptions! Try again later') if User.count.positive?
+        failure_message = 'too many subscriptions! Try again later'
+        return fail!(failure_message) if User.count.positive?
 
-        user = User.create!(args)
-        # schedule_email(user)
+        User.create!(args)
+        # schedule_email(args)
+
+        Success()
       end
+
+      private
 
       def fail!(message)
         Failure[:teapot, message: message]

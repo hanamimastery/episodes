@@ -1,22 +1,25 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  AuthorizationError = Class.new(StandardError)
-  rescue_from AuthorizationError, with: :render_forbidden
-  rescue_from ActionController::ParameterMissing, with: :render_bad_request
-
   private
 
-  def render_forbidden
-    head :forbidden
-  end
+  def call_action(action)
+    action.call(request) do |result|
+      result.success { |status:| head status }
 
-  def render_bad_request
-    head :bad_request
-  end
+      result.failure(:deserialize) { head :bad_request }
 
-  def authorize!
-    token = request.headers['Authorization'].to_s.gsub('Bearer ', '')
-    raise AuthorizationError if token.blank?
+      result.failure(:authorize) { head :forbidden }
+
+      result.failure(Dry::Validation::Result) do |res|
+        render json: { errors: res.errors.to_h }, status: :unprocessable_entity
+      end
+
+      result.failure(:teapot) do |message:|
+        render json: { errors: message }, status: 418
+      end
+
+      result.failure { head :server_error }
+    end
   end
 end

@@ -24,9 +24,9 @@ gem 'puma', '~> 5.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'dry-matcher'
-gem 'dry-monads'
-gem 'dry-validation'
+gem 'dry-matcher', require: false
+gem 'dry-monads', require: false
+gem 'dry-validation', require: false
 
 gem 'rspec-rails'
 
