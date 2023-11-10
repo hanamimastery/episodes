@@ -5,12 +5,12 @@ require "hanami/action"
 
 module Sandbox
   class Action < Hanami::Action
-    before :validate_params
+    before :set_headers
 
     private
 
-    def validate_params(req, res)
-      halt 400, req.params.errors.to_h unless req.params.valid?
+    def set_headers(_req, res)
+      res.headers['Content-Type'] = 'application/json'
     end
   end
 end
