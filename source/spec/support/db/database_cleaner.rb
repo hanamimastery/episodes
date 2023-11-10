@@ -1,5 +1,7 @@
-require "database_cleaner/sequel"
-require_relative "helpers"
+# frozen_string_literal: true
+
+require 'database_cleaner/sequel'
+require_relative 'helpers'
 
 DatabaseCleaner[:sequel].strategy = :transaction
 

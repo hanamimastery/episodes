@@ -5,7 +5,7 @@ module Main
     module Home
       class Show < View::Base
         expose :message do
-          "Welcome to Hanami Mastery"
+          'Welcome to Hanami Mastery'
         end
       end
     end

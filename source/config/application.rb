@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 begin
-  require "break"
+  require 'break'
 rescue LoadError => e
-  raise unless e.path == "break"
+  raise unless e.path == 'break'
 end
 
-require "hanami"
+require 'hanami'
 
 module Welcome
   class Application < Hanami::Application
     config.sessions = :cookie, {
-      key: "welcome.session",
+      key: 'welcome.session',
       secret: settings.session_secret,
       expire_after: 60 * 60 * 24 * 365 # 1 year
     }

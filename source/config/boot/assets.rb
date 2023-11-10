@@ -2,7 +2,7 @@
 
 Hanami.application.register_bootable :assets do |container|
   init do
-    require "framework/web/assets"
+    require 'framework/web/assets'
   end
 
   start do
@@ -12,6 +12,6 @@ Hanami.application.register_bootable :assets do |container|
       server_url: Hanami.application.configuration.assets.server_url
     )
 
-    register "assets", assets
+    register 'assets', assets
   end
 end

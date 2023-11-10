@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "welcome/types"
-require "hanami/application/settings"
+require 'welcome/types'
+require 'hanami/application/settings'
 
 module Welcome
   class Settings < Hanami::Application::Settings
