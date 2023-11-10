@@ -7,7 +7,7 @@ ROM::SQL.migration do
       column :title, String
       column :content, String
       column :status, Integer
-      foreign_key :author_id, :authors
+      foreign_key :author_id, :authors, null: false
       column :published_on, Date
       column :created_at, Time, default: 'now()', null: false
       column :updated_at, Time, default: 'now()', null: false

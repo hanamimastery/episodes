@@ -13,6 +13,8 @@ Hanami.app.register_provider :persistence, namespace: true do
         extensions: %i[pg_array pg_json]
       )
 
+    config.plugin(:sql, relations: :pagination)
+
     register 'config', config
     register 'db', config.gateways[:default].connection
   end
