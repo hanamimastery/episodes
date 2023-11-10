@@ -8,10 +8,9 @@ gem 'rake', '~> 13.0'
 # Application framework
 gem 'hanami', '~> 2.0.0.alpha'
 gem 'hanami-cli', '~> 2.0.0.alpha'
-gem 'hanami-controller', '~> 2.0.alpha'
+gem 'hanami-controller', '~> 2.0.0.alpha'
 gem 'hanami-router', '~> 2.0.0.alpha'
 gem 'hanami-utils', '~> 2.0.0.alpha'
-gem 'hanami-validations', git: 'https://github.com/hanami/validations', branch: 'main'
 gem 'hanami-view', '~> 2.0.0.alpha'
 
 # HTTP
@@ -36,9 +35,6 @@ gem 'dry-validation', '~> 1.4'
 gem 'erbse', '~> 0.1'
 gem 'i18n', '~> 1.8'
 gem 'slim', '~> 4.0'
-
-gem 'alba', git: 'https://github.com/okuramasafumi/alba', branch: 'main'
-gem 'oj'
 
 # Development/test
 group :development, :test do

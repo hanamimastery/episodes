@@ -2,7 +2,7 @@
 
 require 'dry/types'
 
-module Interlinker
+module Sandbox
   module Types
     include Dry.Types
   end

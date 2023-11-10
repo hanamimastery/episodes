@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'interlinker/view/context'
+require 'sandbox/view/context'
 
 module Main
   module View
-    class Context < Interlinker::View::Context
+    class Context < Sandbox::View::Context
     end
   end
 end

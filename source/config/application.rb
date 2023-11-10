@@ -2,10 +2,10 @@
 
 require 'hanami'
 
-module Interlinker
+module Sandbox
   class Application < Hanami::Application
     config.sessions = :cookie, {
-      key: 'interlinker.session',
+      key: 'sandbox.session',
       secret: settings.session_secret,
       expire_after: 60 * 60 * 24 * 365 # 1 year
     }

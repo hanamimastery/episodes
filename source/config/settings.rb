@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'interlinker/types'
+require 'sandbox/types'
 require 'hanami/application/settings'
 
-module Interlinker
+module Sandbox
   class Settings < Hanami::Application::Settings
     # Database
     setting :database_url, constructor: Types::String

@@ -67,7 +67,7 @@ module Test
 
     def chdir(name)
       self.class.new(
-        application: application,
+        application:,
         root: root.join(name.to_s)
       )
     end
@@ -153,9 +153,9 @@ RSpec.configure do |config|
   end
 
   config.suite.groups.each do |group|
-    config.when_first_matching_example_defined group: group do
+    config.when_first_matching_example_defined(group:) do
       require_relative group.to_s
-    rescue LoadError # rubocop:disable Lint/SuppressedException
+    rescue LoadError
     end
   end
 end

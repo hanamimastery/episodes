@@ -2,7 +2,7 @@
 
 require 'hanami/view/part'
 
-module Interlinker
+module Sandbox
   module View
     class Part < Hanami::View::Part
     end

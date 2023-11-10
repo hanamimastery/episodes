@@ -1,10 +1,10 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require 'interlinker/repository'
+require 'sandbox/repository'
 
 module Main
-  class Repository < Interlinker::Repository
-    # struct_namespace Entities
+  class Repository < Sandbox::Repository
+    struct_namespace Entities
   end
 end
