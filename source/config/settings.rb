@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "interlinker/types"
-require "hanami/application/settings"
+require 'interlinker/types'
+require 'hanami/application/settings'
 
 module Interlinker
   class Settings < Hanami::Application::Settings
