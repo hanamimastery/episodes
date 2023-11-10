@@ -1,10 +1,17 @@
-img src=(article.thumbnail) alt="Placeholder image"
-h4 = article.title
-h6
-  == article.by
-  = article.published_on
-
-= article.excerpt
-
-a href=("/articles/#{article.id}")
-  | Read...
+.card
+  .card-image
+    figure.image.is-16by9
+      img src=(article.thumbnail)
+  .card-content
+    .media
+      .media-content
+        h4.title.is-4 = article.title
+        h6.subtitle.is-6
+          == article.by
+          time datetime==article.published_on
+            = article.published_on
+    .content
+      = article.excerpt
+      .buttons.is-right
+        a.button.is-primary.mt-4.is-right href=("/articles/#{article.id}")
+          | Read...
