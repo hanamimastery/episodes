@@ -1,12 +1,19 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'English'
+require 'find'
+require 'tempfile'
+require 'fileutils'
+require 'pathname'
+require 'open3'
+
 class Installer
   class << self
     def call(app_name)
-      rename_app app_name
+      return unless rename_app(app_name)
+
       install_readme
+      bundle_install
       generate_cli_binstub
       self_destruct
 
@@ -15,28 +22,123 @@ class Installer
 
     private
 
-    # Borrowed from github.com/carbonfive/raygun
     def rename_app(app_name)
+      if /[A-Z]/.match(app_name)
+        puts 'Capital letters can lead to unexpected results.'
+        puts "Underscore your app name instead (i.e. #{app_name.downcase})."
+        return false
+      end
+      rename_file_contents(app_name)
+      rename_file_names(app_name)
+    end
+
+    def rename_file_contents(app_name)
       dash_name = app_name.tr('_', '-')
       snake_name = app_name.tr('-', '_')
       camel_name = camelize(snake_name)
       title_name = titleize(snake_name)
-
-      {
-        'Sandbox' => camel_name,
+      replacements = {
+        'AppPrototype' => camel_name,
         'app-prototype' => dash_name,
-        'sandbox' => snake_name,
+        'app_prototype' => snake_name,
         'App Prototype' => title_name
-      }.each do |proto_name, new_name|
-        # LC_ALL=C is required to avoid "RE error: illegal byte sequence" errors on macOS
-        shell "find . -type f -print | grep --invert-match .git | xargs #{sed_i} 's/#{proto_name}/#{new_name}/g'",
-              'LC_ALL' => 'C'
-      end
+      }
 
-      %w[d f].each do |find_type|
-        shell "find . -depth -type #{find_type} -name '*sandbox*' " \
-              "-exec bash -c 'mv $0 ${0/sandbox/#{snake_name}}' {} \\;"
+      find_files_for_gsub.each do |fname|
+        file_edit(fname, replacements)
       end
+    end
+
+    def rename_file_names(app_name)
+      files, dirs = find_files_for_rename.partition { |f| File.file? f }
+      files.each do |orig_name|
+        new_name = orig_name.sub('app_prototype', app_name)
+        FileUtils.mv(orig_name, new_name, force: true, verbose: true) unless orig_name == new_name
+      end
+      dirs.reverse.each do |orig_name|
+        new_name = orig_name.sub('app_prototype', app_name)
+        FileUtils.mv(orig_name, new_name, force: true, verbose: true) unless orig_name == new_name
+      end
+    end
+
+    def find_files_for_gsub(d = Pathname(__dir__).parent)
+      files_or_dirs = []
+      Find.find(d) do |path|
+        if File.directory?(path)
+          if File.basename(path) == '.git'
+            Find.prune
+          else
+            next
+          end
+        else
+          next if path == File.expand_path(__FILE__)
+
+          if block_given?
+            yield path
+          else
+            files_or_dirs << path
+          end
+        end
+      end
+      return files_or_dirs unless block_given?
+    end
+
+    def find_files_for_rename(d = Pathname(__dir__).parent)
+      files_and_dirs = []
+      Find.find(d) do |path|
+        regexp = /app_prototype/
+        bname = File.basename(path)
+        if File.directory?(path)
+          case bname
+          when '.git'
+            Find.prune
+          when regexp
+            if block_given?
+              yield path
+            else
+              files_and_dirs << path
+            end
+          else
+            next
+          end
+        else
+          next unless bname =~ regexp
+
+          if block_given?
+            yield path
+          else
+            files_and_dirs << path
+          end
+        end
+      end
+      files_and_dirs unless block_given?
+    end
+
+    def file_edit(filename, replacements)
+      puts "changing filename #{filename}"
+      tempfile = Tempfile.new
+      File.open(filename).each do |line|
+        replacements.each do |proto_name, new_name|
+          line = line.gsub(proto_name, new_name)
+        end
+
+        tempfile.puts line
+      end
+      tempfile.fdatasync unless RUBY_PLATFORM =~ /mswin|mingw|windows/
+      tempfile.close
+      if RUBY_PLATFORM =~ /mswin|mingw|windows/
+      # FIXME: apply perms on windows
+      else
+        stat = File.stat(filename)
+        FileUtils.chown stat.uid, stat.gid, tempfile.path
+        FileUtils.chmod stat.mode, tempfile.path
+      end
+      FileUtils.mv tempfile.path, filename
+    end
+
+    def bundle_install
+      puts 'Running bundle install - this may take a few minutes'
+      shell 'bundle install'
     end
 
     def generate_cli_binstub
@@ -44,16 +146,18 @@ class Installer
     end
 
     def install_readme
-      shell 'mv README.app.md README.md'
+      FileUtils.mv('README.app.md', 'README.md')
+    rescue StandardError
+      nil
     end
 
     def self_destruct
-      shell 'rm -f .github/FUNDING.yml'
-      shell 'rm bin/install'
+      FileUtils.rm('.github/FUNDING.yml', force: true, verbose: true)
+      FileUtils.rm('rm bin/install', force: true, verbose: true)
     end
 
     def camelize(string)
-      result = string.sub(/^[a-z\d]*/) { ::Regexp.last_match(0).capitalize }
+      result = string.sub(/^[a-z\d]*/) { Regexp.last_match(0).capitalize }
       result.gsub(%r{(?:_|(/))([a-z\d]*)}) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
     end
 
@@ -62,19 +166,14 @@ class Installer
       result.gsub(/\b('?[a-z])/) { Regexp.last_match(1).capitalize }
     end
 
-    def shell(command, env = {})
-      result = system(env, command)
+    def shell(command, _env = {})
+      Open3.popen2e(command) do |_stdin, stdout_err, wait_thr|
+        while line = stdout_err.gets
+          puts line
+        end
 
-      return if result
-
-      raise "#{command} failed with status #{$CHILD_STATUS.exitstatus}\n\n#{output}"
-    end
-
-    # Distinguish BSD vs GNU sed with the --version flag (only present in GNU sed).
-    def sed_i
-      @sed_i ||= begin
-        `sed --version &> /dev/null`
-        $CHILD_STATUS.success? ? 'sed -i' : "sed -i ''"
+        exit_status = wait_thr.value
+        raise "#{command} failed with status #{exit_status}\n" unless exit_status.success?
       end
     end
   end

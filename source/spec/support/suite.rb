@@ -31,12 +31,12 @@ module Test
     end
 
     def application
-      @application ||= init_application
+      @application ||= prepare_application
     end
 
-    def init_application
+    def prepare_application
       require_relative '../../config/application'
-      @application = Hanami.init
+      @application = Hanami.prepare
     end
 
     def start_coverage
@@ -67,7 +67,7 @@ module Test
 
     def chdir(name)
       self.class.new(
-        application:,
+        application: application,
         root: root.join(name.to_s)
       )
     end
@@ -153,9 +153,9 @@ RSpec.configure do |config|
   end
 
   config.suite.groups.each do |group|
-    config.when_first_matching_example_defined(group:) do
+    config.when_first_matching_example_defined group: group do
       require_relative group.to_s
-    rescue LoadError
+    rescue LoadError # rubocop:disable Lint/SuppressedException
     end
   end
 end

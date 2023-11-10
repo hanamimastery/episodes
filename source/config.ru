@@ -3,7 +3,7 @@
 require 'rack/static'
 use Rack::Static,
     urls: ['/assets'],
-    root: 'public',
+    root: '.assets/tmp',
     header_rules: [
       ['/assets', { 'Cache-Control' => 'public, max-age=31536000' }]
     ]
@@ -11,5 +11,8 @@ use Rack::Static,
 require 'rack/method_override'
 use Rack::MethodOverride
 
+require 'hanami/middleware/body_parser'
+use Hanami::Middleware::BodyParser, :json
+
 require 'hanami/boot'
-run Hanami.app
+run Hanami.rack_app

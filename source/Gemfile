@@ -6,22 +6,27 @@ source 'https://rubygems.org/'
 gem 'rake', '~> 13.0'
 
 # Application framework
-%w[hanami hanami-cli hanami-controller hanami-router hanami-utils hanami-view].each do |name|
-  gem name, '~> 2.0.0.alpha'
-end
+gem 'hanami', '~> 2.0.0.alpha'
+gem 'hanami-cli', '~> 2.0.0.alpha'
+gem 'hanami-controller', path: '../../../../controller' # "~> 2.0.alpha"
+gem 'hanami-router', '~> 2.0.0.alpha'
+gem 'hanami-utils', '~> 2.0.0.alpha'
+gem 'hanami-validations', git: 'https://github.com/hanami/validations', branch: 'main'
+gem 'hanami-view', '~> 2.0.0.alpha'
 
 # HTTP
 gem 'down', '~> 5.1'
-gem 'puma', '~> 4.0'
+gem 'puma', '~> 5.6'
 
 # Database
+gem 'pg'
 gem 'rom', '~> 5.2'
-gem 'rom-factory', '~> 0.10'
 gem 'rom-sql', '~> 3.2'
 gem 'sequel', '~> 5.32'
 gem 'sqlite3'
 
 # Application
+gem 'dry-configurable', '~> 0.13'
 gem 'dry-matcher', '~> 0.8'
 gem 'dry-monads', '~> 1.2'
 gem 'dry-struct', '~> 1.0'
@@ -47,8 +52,9 @@ group :test do
   gem 'capybara', '~> 3.0'
   gem 'capybara-screenshot', '~> 1.0'
   gem 'cuprite', '~> 0.8'
-  gem 'database_cleaner', '~> 1.7'
+  gem 'database_cleaner-sequel', '~> 2.0'
   gem 'puffing-billy', '~> 2.2'
+  gem 'rom-factory', '~> 0.10'
   gem 'rspec', '~> 3.9'
   gem 'simplecov', '~> 0.17'
 end
