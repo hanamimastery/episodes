@@ -7,6 +7,9 @@ module HanamiMastery
     define do
       slice :main, at: '/' do
         root to: 'home.show'
+
+        get '/articles', to: 'blog.articles.index'
+        get '/articles/:id', to: 'blog.articles.show'
       end
     end
   end

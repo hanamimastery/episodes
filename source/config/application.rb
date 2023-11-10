@@ -20,5 +20,25 @@ module HanamiMastery
       level: :debug,
       stream: settings.log_to_stdout ? $stdout : "log/#{Hanami.env}.log"
     }
+
+    config.actions.default_headers = {
+      'X-Frame-Options' => 'DENY',
+      'X-Content-Type-Options' => 'nosniff',
+      'X-XSS-Protection' => '1; mode=block',
+      'Content-Security-Policy' => \
+        "base-uri 'self'; " \
+        "child-src 'self'; " \
+        "connect-src 'self'; " \
+        "default-src 'none'; " \
+        "font-src 'self'; " \
+        "form-action 'self'; " \
+        "frame-ancestors 'self'; " \
+        "frame-src 'self'; " \
+        "img-src 'self' https: data:; " \
+        "media-src 'self'; " \
+        "object-src 'none'; " \
+        "script-src 'localhost'; " \
+        "style-src * 'unsafe-inline'"
+    }
   end
 end
