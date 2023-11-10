@@ -26,6 +26,7 @@ gem 'sqlite3'
 
 # Application
 gem 'dry-configurable', '~> 0.13'
+gem 'dry-effects'
 gem 'dry-matcher', '~> 0.8'
 gem 'dry-monads', '~> 1.2'
 gem 'dry-struct', '~> 1.0'
