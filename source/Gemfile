@@ -2,30 +2,29 @@
 
 source "https://rubygems.org"
 
-gem "hanami", "~> 2.0.0.beta"
-gem "hanami-router", "~> 2.0.0.beta"
-gem "hanami-controller", "~> 2.0.0.beta"
-gem "hanami-validations", "~> 2.0.0.beta"
+gem "hanami", "~> 2.0"
+gem "hanami-router", "~> 2.0"
+gem "hanami-controller", "~> 2.0"
+gem "hanami-validations", "~> 2.0"
 
-gem "dry-effects"
-gem "dry-matcher"
-gem "dry-monads"
-gem "dry-types"
+gem "dry-types", "~> 1.0", ">= 1.6.1"
 gem "puma"
 gem "rake"
 
-gem "rom"
-gem "rom-sql"
-gem "pg"
-
 group :development, :test do
   gem "dotenv"
-  gem "byebug"
-  gem "faker"
+end
+
+group :cli, :development do
+  gem "hanami-reloader"
 end
 
 group :cli, :development, :test do
   gem "hanami-rspec"
+end
+
+group :development do
+  gem "guard-puma", "~> 0.8"
 end
 
 group :test do

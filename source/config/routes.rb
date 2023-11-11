@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
-module Sandbox
+module Hanamimastery
   class Routes < Hanami::Routes
     root { "Hello from Hanami" }
-    get '/articles', to: 'articles.index'
-    post '/articles', to: 'create_article.action'
-    patch '/articles/:id/publish', to: 'articles.publish'
+
+    slice :api, at: "/api" do
+    end
+
+    slice :admin, at: "/admin" do
+    end
+
+    slice :main, at: "/" do
+    end
   end
 end

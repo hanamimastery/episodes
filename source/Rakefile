@@ -1,16 +1,3 @@
 # frozen_string_literal: true
 
-require 'rom/sql/rake_task'
-require 'hanami/prepare'
-
-namespace :db do
-  task :seed do
-    require Sandbox::Container.root.join('db/seed.rb').to_s
-  end
-
-  task :setup do
-    Sandbox::App.prepare :persistence
-    config = Sandbox::Container['persistence.config']
-    ROM::SQL::RakeSupport.env = ROM.container(config)
-  end
-end
+require "hanami/rake_tasks"
