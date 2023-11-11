@@ -4,13 +4,13 @@ module Main
   module Views
     module Contact
       class Show < Main::View
-        expose :title
-        expose :contact, default: {}
-        expose :errors, default: {}
+        # expose :title
+        # expose :contact, default: {}
+        # expose :errors, default: {}
 
-        def title
-          "Cannot subscribe?! Oh NO! Let us know what happens!"
-        end
+        # def title
+        #   "Cannot subscribe?! Oh NO! Let us know what happens!"
+        # end
       end
     end
   end

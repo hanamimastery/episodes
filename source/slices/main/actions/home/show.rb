@@ -5,7 +5,9 @@ module Main
     module Home
       # Processes show action.
       class Show < Main::Action
-        def handle(*, response) = response.render view
+        def handle(*, response)
+          response.body = Views::Home::Show.new.call
+        end
       end
     end
   end

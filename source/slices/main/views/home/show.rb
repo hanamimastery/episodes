@@ -5,10 +5,16 @@ module Main
     module Home
       # Renders show view.
       class Show < Main::View
-        expose :title
+        def template
+          render ApplicationLayout.new do
+            h1(class: "title is-h1") { "Consider subscribing?" }
 
-        def title
-          "Welcome to HanamiMastery!"
+            div(id: "parent") do
+              button(class: "button is-primary") do
+                "Click me to subscribe!"
+              end
+            end
+          end
         end
       end
     end
