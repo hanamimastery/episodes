@@ -23,7 +23,6 @@ gem "rom", "~> 5.3"
 gem "rom-sql", "~> 3.6"
 gem "sequel", "~> 5.64"
 
-
 group :code_quality do
   gem "caliber", "~> 0.21"
   gem "reek", "~> 6.1"
@@ -33,6 +32,7 @@ end
 
 group :development, :test do
   gem "dotenv", "~> 2.8"
+  gem 'byebug'
 end
 
 group :development do

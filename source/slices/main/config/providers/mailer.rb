@@ -7,11 +7,7 @@ Main::Slice.register_provider :mailer, namespace: true do
     configuration = Hanami::Mailer::Configuration.new do |config|
       config.root = target.root.join("mailers")
       config.default_charset = "UTF-8"
-      config.delivery_method = :smtp, {
-        address:              "localhost",
-        port:                 1025,
-        enable_starttls_auto: false
-      }
+      config.delivery_method = :smtp, {port: 1025, address: 'localhost'}
     end
 
     register "configuration", configuration
@@ -23,10 +19,11 @@ Main::Slice.register_provider :mailer, namespace: true do
     # config, and finalizing config before using them.
     #
     mailers = Dir[configuration.root.join('*.rb')]
-    mailers.each do |mailer|
-      mailer_name = mailer.split('/').last.split('.').first
+    mailers.each do |path|
+      mailer_name = File.basename(path, '.*')
       target["mailers.#{mailer_name}"]
     end
+
     Hanami::Mailer.finalize(configuration)
   end
 end

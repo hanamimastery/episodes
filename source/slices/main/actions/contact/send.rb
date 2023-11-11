@@ -4,27 +4,30 @@ module Main
   module Actions
     module Contact
       class Send < Main::Action
-        before :deserialize, :validate
-
         include Deps[
-          'mailers.contact_mailer',
-          failure_view: 'views.contact.show'
+          failure_view: 'views.contact.show',
+          mailer: 'mailers.contact_mailer'
         ]
+
+        before :deserialize, :validate
 
         params do
           required(:contact).schema do
-            required(:email).filled(:str?)
-            required(:message).filled(:str?)
+            required(:email).filled(:string)
+            required(:message).filled(:string)
           end
         end
 
-        def handle(request, response)
-          # contact_mailer.deliver(contact: response[:contact])
-          pp response[:contact]
+        def handle(*, response)
+          mailer.deliver(contact: response[:contact])
           response.redirect routes.path(:contact)
         end
 
         private
+
+        def deserialize(request, response)
+          response[:contact] = request.params[:contact]
+        end
 
         def validate(request, response)
           return if request.params.valid?
@@ -37,10 +40,6 @@ module Main
             errors: errors[:contact]
           )
           halt 422, body
-        end
-
-        def deserialize(request, response)
-          response[:contact] = request.params[:contact]
         end
       end
     end

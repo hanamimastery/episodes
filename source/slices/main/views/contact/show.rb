@@ -9,7 +9,7 @@ module Main
         expose :errors, default: {}
 
         def title
-          "Cannot subscribe?! Oh no! Let us know what happens!"
+          "Cannot subscribe?! Oh NO! Let us know what happens!"
         end
       end
     end

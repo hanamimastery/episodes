@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# slices/main/views/parts/errors.rb
 
 module Main
   module Views
@@ -6,7 +6,10 @@ module Main
       class Errors < Part
         def message(key)
           msgs = value[key] || []
-          msgs.join(", ")
+          msg = msgs.join(", ")
+          return msg if msg.empty?
+
+          render :form_error, message: msg
         end
       end
     end
