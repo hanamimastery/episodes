@@ -6,17 +6,23 @@ source "https://rubygems.org"
 
 gem "dry-types", "~> 1.7"
 gem "erbse", "~> 0.1"
-gem "hanami", "~> 2.0"
-gem "hanami-controller", "~> 2.0"
-gem "hanami-router", "~> 2.0"
-gem "hanami-validations", "~> 2.0"
+gem "hanami", github: "hanami/hanami", branch: "main"
+gem "hanami-cli", github: "hanami/cli", branch: "main"
+gem "hanami-devtools", github: "hanami/devtools", branch: "main"
+gem "hanami-mailer", github: "hanami/mailer", branch: "main"
+gem "hanami-utils", github: "hanami/utils", branch: "main"
+gem "hanami-controller", github: "hanami/controller", branch: "main"
+gem "hanami-router", github: "hanami/router", branch: "main"
+gem "hanami-validations", github: "hanami/validations", branch: "main"
 gem "hanami-view", github: "hanami/view", branch: "main"
+
 gem "pg", "~> 1.4"
 gem "puma", "~> 6.0"
 gem "refinements", "~> 10.0"
 gem "rom", "~> 5.3"
 gem "rom-sql", "~> 3.6"
 gem "sequel", "~> 5.64"
+
 
 group :code_quality do
   gem "caliber", "~> 0.21"

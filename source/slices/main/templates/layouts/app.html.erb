@@ -4,21 +4,7 @@
     <title>Hanamimastery</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <style type="text/css">
-      :root {
-        --site-font-family: Verdana;
-        --site-color-black: hsl(0, 0%, 0%);
-        --site-color-white: hsl(0, 0%, 100%);
-      }
-
-      body {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        font-family: var(--site-font-family);
-        margin: 1rem 5rem;
-      }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
     <script src="https://unpkg.com/htmx.org@1.8.4/dist/htmx.min.js"
             crossorigin="anonymous"
@@ -27,6 +13,17 @@
   </head>
 
   <body>
+    <div class="container">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-menu">
+          <div class="navbar-start">
+            <%= link_to('Home', routes.path(:root), class: 'navbar-item') %>
+            <%= link_to('Contact', routes.path(:contact), class: 'navbar-item') %>
+          </div>
+        </div>
+      </nav>
     <%= yield %>
+  </div>
+
   </body>
 </html>

@@ -2,13 +2,14 @@
 
 module Main
   module Views
-    module Home
-      # Renders show view.
+    module Contact
       class Show < Main::View
         expose :title
+        expose :contact, default: {}
+        expose :errors, default: {}
 
         def title
-          "Welcome to HanamiMastery!"
+          "Cannot subscribe?! Oh no! Let us know what happens!"
         end
       end
     end
