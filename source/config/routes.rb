@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-require 'hanami/routes'
-
-module Sandbox
+module Hanamimastery
+  # Configures application routes.
   class Routes < Hanami::Routes
-    define do
-      root { 'Hello from Hanami Mastery!' }
-
-      get 'messages', to: 'messages.index'
-      get 'messages/:id', to: 'messages.show'
+    slice :main, at: "/" do
+      root to: "home.show"
+      post "/subscribe", to: "home.subscribe"
     end
   end
 end

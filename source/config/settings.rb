@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require "sandbox/types"
-require "hanami/settings"
-
-module Sandbox
+module Hanamimastery
+  # Configures application settings.
   class Settings < Hanami::Settings
+    setting :database_url
   end
 end
