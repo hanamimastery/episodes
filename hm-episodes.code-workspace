@@ -1,11 +1,15 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "/Users/sebastian/Projects/hanamimastery/episodes"
 		}
 	],
 	"settings": {
 		"gitlens.codeLens.enabled": false,
-		"window.zoomLevel": 4
+		"window.zoomLevel": 4,
+		"workbench.commandPalette.history": 0,
+		"search.quickOpen.includeHistory": false,
+		"debug.console.historySuggestions": false,
+		"editor.smoothScrolling": true
 	}
 }

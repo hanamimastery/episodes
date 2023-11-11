@@ -1,5 +1,0 @@
-= Versions
-
-== 0.0.0 (2023-01-22)
-
-* Added initial implementation.
