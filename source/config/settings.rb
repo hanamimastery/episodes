@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Hanamimastery
-  # Configures application settings.
   class Settings < Hanami::Settings
-    setting :database_url
+    # Define your app settings here, for example:
+    #
+    # setting :my_flag, default: false, constructor: Types::Params::Bool
   end
 end

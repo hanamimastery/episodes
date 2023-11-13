@@ -1,9 +1,10 @@
 # auto_register: false
 # frozen_string_literal: true
 
-require "hanami/action"
-
 module Hanamimastery
-  class Action < Hanami::Action
+  module Views
+    module Helpers
+      # Add your view helpers here
+    end
   end
 end

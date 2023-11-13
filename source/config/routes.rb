@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 module Hanamimastery
-  # Configures application routes.
   class Routes < Hanami::Routes
-    slice :main, at: "/" do
-      root to: "home.show"
-      post "/subscribe", to: "home.subscribe"
-    end
+    # Add your routes here. See https://guides.hanamirb.org/routing/overview/ for details.
   end
 end
