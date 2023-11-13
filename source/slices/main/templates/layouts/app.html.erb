@@ -8,7 +8,12 @@
     <%= stylesheet_tag "main/app" %>
   </head>
   <body>
-    <%= yield %>
+    <%= render("top_nav") %>
+    <section class="section">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
     <%= javascript_tag "main/app" %>
   </body>
 </html>
