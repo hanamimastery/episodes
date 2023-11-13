@@ -1,3 +1,17 @@
 # frozen_string_literal: true
 
 require "hanami/rake_tasks"
+
+require "rom/sql/rake_task"
+
+namespace :db do
+  task setup: :environment do
+    Hanami.app.prepare :persistence
+    config = Hanami.app['persistence.config']
+    ROM::SQL::RakeSupport.env = ROM.container(config)
+  end
+
+  task seed: :setup do
+    require Hanamimastery::App.root.join('db/seed.rb').to_s
+  end
+end

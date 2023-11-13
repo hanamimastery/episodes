@@ -13,6 +13,11 @@ gem "dry-types", "~> 1.0", ">= 1.6.1"
 gem "puma"
 gem "rake"
 
+gem 'rom', '~> 5.3'
+gem 'rom-sql', '~> 3.6'
+gem 'sequel', '~> 5.64'
+gem 'pg'
+
 group :development do
   gem "hanami-webconsole", "~> 2.1.0.rc"
   gem "guard-puma"
