@@ -5,8 +5,7 @@ require "dry/types"
 module Hanamimastery
   Types = Dry.Types
 
-  # Defines custom types.
   module Types
-    # Add custom types here.
+    # Define your custom types here
   end
 end

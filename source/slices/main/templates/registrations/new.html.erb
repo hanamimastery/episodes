@@ -1,0 +1,51 @@
+<h1 class="title">Join us!</h1>
+
+<%= form_for :registration, routes.path(:register_account) do |f| %>
+  <div class="field">
+    <%= f.label "username", class: "label" %>
+    <div class="control has-icons-left">
+      <%= f.text_field :username, class: "input" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-user"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label "password", class: "label" %>
+    <div class="control has-icons-left">
+      <%= f.password_field :password, class: "input" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label "password_confirmation", class: "label" %>
+    <div class="control has-icons-left">
+      <%= f.password_field :password_confirmation, class: "input" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <label class="checkbox">
+        <input type="checkbox">
+        I agree to the <a href="#">terms and conditions</a>
+      </label>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button class="button is-link">Submit</button>
+    </div>
+    <div class="control">
+      <button class="button is-link is-light">Cancel</button>
+    </div>
+  </div>
+<% end %>

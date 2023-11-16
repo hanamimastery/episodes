@@ -1,0 +1,24 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://hanamimastery.com">
+      <img src="https://hanamimastery.com/logo-hm-letter.jpeg" height="28">
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <%= link_to 'Home', routes.path(:root), class: 'navbar-item' %>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <%= link_to routes.path(:signup), class: "button is-primary" do %>
+            <strong>Sign up</strong>
+          <% end %>
+          <%= link_to 'Log in', '#', class: "button is-light"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
