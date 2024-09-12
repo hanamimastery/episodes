@@ -1,0 +1,9 @@
+<div class="field">
+  <div class="control <%= control_class_names %>">
+    <label class="checkbox">
+      <%= f.check_box field_name, checked_value: "true", unchecked_value: "false" %>
+      <%= label_text %>
+    </label>
+    <%= render("shared/forms/field_errors", messages: errors) if error_field? %>
+  </div>
+</div>

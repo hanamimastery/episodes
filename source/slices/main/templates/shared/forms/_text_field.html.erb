@@ -1,0 +1,8 @@
+<div class="field">
+  <%= f.label(field_name, class: "label") { label_text } %>
+  <div class="<%= control_class_names %>">
+    <%= f.text_field field_name, class: input_field_classes, placeholder: placeholder_text %>
+    <%= render("shared/forms/field_icon", icon: icon_name, align: "left") if has_icon? %>
+    <%= render("shared/forms/field_errors", messages: errors) if error_field? %>
+  </div>
+</div>

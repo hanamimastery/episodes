@@ -20,7 +20,11 @@ module Main
             response.redirect(routes.path(:root))
           else
             response.flash.now[:alert] = 'Error occured while creating the account!'
-            # here will be validation error rendering logic
+            response.render(
+              view,
+              values: request.params[:registration],
+              errors: request.params.errors[:registration]
+            )
           end
         end
       end
