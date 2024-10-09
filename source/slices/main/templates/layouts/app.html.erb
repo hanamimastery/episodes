@@ -6,7 +6,8 @@
     <script src="https://kit.fontawesome.com/<%= font_awesome_kit %>.js" crossorigin="anonymous"></script>
     <title>Hanamimastery - Main</title>
     <%= favicon_tag %>
-    <%= stylesheet_tag "main/app" %>
+    <%= stylesheet_tag "app" %>
+
   </head>
   <body>
     <%= render("top_nav") %>
@@ -16,6 +17,6 @@
         <%= yield %>
       </div>
     </div>
-    <%= javascript_tag "main/app" %>
+    <%= javascript_tag "app" %>
   </body>
 </html>

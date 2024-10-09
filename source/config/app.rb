@@ -7,7 +7,7 @@ module Hanamimastery
     config.actions.sessions = :cookie, {
       key: 'hanamimaster.session',
       secret: settings.session_secret,
-      expire_after: 60*60*24*365
+      expire_after: 60 * 60 * 24 * 365
     }
 
     config.actions.content_security_policy[:script_src] = [
