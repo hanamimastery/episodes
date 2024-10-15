@@ -1,0 +1,26 @@
+<h1 class="title is-1">HanamiMastery::Views::Articles::Index</h1>
+
+<div class="content">
+  <table class="table">
+    <thead>
+      <tr><td>Title</td><td>Content</td><td>Actions</td></tr>
+    </thead>
+    <tfoot>
+      <tr><td>Title</td><td>Content</td><td>Actions</td></tr>
+    </tfoot>
+    <tbody>
+      <% items.each do |item| %>
+        <tr>
+          <td><%= link_to item.title, routes.path(:article, id: item.id), class: 'is-link' %></td>
+          <td><%= item.content %></td>
+          <td>
+            <%= link_to 'Edit', '#', class: 'button is-link' %>
+            <%= form_for :article, routes.path(:destroy_article, id: item.id), method: :delete do |f| %>
+              <%= f.submit 'Destroy', class: 'button is-danger' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,8 @@
+{
+  "name": "hanami_mastery",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "hanami-assets": "^2.2.0-beta.2"
+  }
+}

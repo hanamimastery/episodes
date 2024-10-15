@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanami mastery</title>
+    <%= favicon_tag %>
+    <%= stylesheet_tag "app" %>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://hanamimastery.com">
+          <img src="https://hanamimastery.com/logo-hm-letter.jpeg" height="28">
+        </a>
+      </div>
+      <div id="top-navigation" class="navbar-menu">
+        <div class="navbar-start">
+          <%= link_to 'Home', '/', class: 'navbar-item' %>
+          <%= link_to 'Articles', routes.path(:articles), class: 'navbar-item' %>
+        </div>
+
+        <div class="navbar-end">
+          <%= link_to 'New article', routes.path(:new_article), class: 'button is-link' %>
+        </div>
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Hanami mastery</strong>. The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
+    <%= javascript_tag "app" %>
+  </body>
+</html>
